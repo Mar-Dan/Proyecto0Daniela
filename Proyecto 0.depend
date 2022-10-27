@@ -1,0 +1,126 @@
+# depslib dependency file v1.0
+1666901158 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdexcept>
+	"LinkedPriorityQueue.h"
+	"DLinkedList.h"
+	"PriorityQueue.h"
+	"Servicio.h"
+	"Area.h"
+	"Ventana.h"
+	"Cliente.h"
+	"Tiquete.h"
+	"ListaVentanillas.h"
+	"Dictionary.h"
+
+1666686523 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\ventana.h
+	"Area.h"
+	"LinkedPriorityQueue.h"
+	"ListaTiquetes.h"
+	<conio.h>
+	<string>
+	<iostream>
+	<stdlib.h>
+
+1665082922 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\stack.h
+
+1665118302 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\arraystack.h
+	"Stack.h"
+	<iostream>
+	<stdexcept>
+
+1666145168 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\linkedpriorityqueue.h
+	<iostream>
+	<stdexcept>
+	"PriorityQueue.h"
+	"LinkedQueue.h"
+	"Tiquete.h"
+
+1665458353 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\priorityqueue.h
+
+1665458501 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\linkedqueue.h
+	<stdexcept>
+	<iostream>
+	"Node.h"
+	"Queue.h"
+
+1665458501 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\node.h
+
+1665458501 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\queue.h
+
+1666486383 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\cliente.h
+	<cstdlib>
+	<iostream>
+
+1666685932 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\tiquete.h
+	<stdexcept>
+	<ctime>
+	<string>
+	"Ventana.h"
+	"Servicio.h"
+
+1666856374 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\area.h
+	"Node.h"
+	"LinkedPriorityQueue.h"
+	"HeapPriorityQueue.h"
+	"LinkedList.h"
+	"Ventana.h"
+	"Servicio.h"
+	"ArrayList.h"
+	"ListaVentanillas.h"
+	<conio.h>
+	<string>
+	<iostream>
+
+1666500790 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\linkedlist.h
+	"List.h"
+	"Node.h"
+	<stdexcept>
+	<iostream>
+
+1666500736 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\list.h
+
+1666062623 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\listaventanillas.h
+	"LinkedList.h"
+	"Ventana.h"
+
+1666500736 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\arraylist.h
+	"List.h"
+	<stdexcept>
+	<iostream>
+	"Tiquete.h"
+
+1666644976 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\servicio.h
+	"iostream"
+	<string>
+	"Area.h"
+
+1666072329 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\dictionary.h
+
+1666457259 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\listatiquetes.h
+	"LinkedPriorityQueue.h"
+
+1666487967 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\dlinkedlist.h
+	"List.h"
+	"DNode.h"
+	<stdexcept>
+	<iostream>
+
+1666487967 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\dnode.h
+
+1666685053 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\heappriorityqueue.h
+	<stdexcept>
+	"PriorityQueue.h"
+	"KVPair.h"
+	"MinHeap.h"
+
+1666685243 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\kvpair.h
+	<iostream>
+
+1666685296 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\include\minheap.h
+	<stdexcept>
+	<iostream>
+
+1666855541 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\mains.c
+
