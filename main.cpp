@@ -24,6 +24,12 @@ void Enter(){
         i++;
     }
 }
+void VerEstadoDeColas(){cout<<"Estado colas";}
+void SolicitarTiquete(){}
+void Atender(){}
+
+//***********************************ADMINISTRACION******************************************
+
 void DefaultAreas(){
     listaAreas = new DLinkedList<Area*>();
     Area* cajas = new Area();
@@ -41,6 +47,7 @@ void DefaultAreas(){
 
 }
 void printListaAreas(){
+    Enter();
     int p = listaAreas->getPos();
     cout<<"AREAS:"<<endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -66,7 +73,7 @@ Area* getArea(string nombreArea){
 void DefaultServicios(){
     listaServicios = new DLinkedList<Servicio*>();
     listaServicios->append(new Servicio("Retiro", getArea("Cajas")));
-    listaServicios->append(new Servicio("Déposito", getArea("Cajas")));
+    listaServicios->append(new Servicio("Depósito", getArea("Cajas")));
     listaServicios->append(new Servicio("Pagar recibo", getArea("Cajas")));
     listaServicios->append(new Servicio("Pagar marchamo", getArea("Cajas")));
     listaServicios->append(new Servicio("Cambiar cheque", getArea("Cajas")));
@@ -76,7 +83,16 @@ void DefaultServicios(){
     listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al Cliente")));
 
 }
+void deleteServicio(int i){
+    cout<<"¿Cual servicio desea borrar? "; cin>>i;
+    int origin = listaServicios->getPos();
+    listaServicios->goToPos(i);
+    listaServicios->remove();
+    listaServicios->goToPos(origin);
+    return;
+}
 int printListaServicios(){
+    Enter();
     int p;
     if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
         p = listaServicios->getPos();
@@ -93,31 +109,29 @@ int printListaServicios(){
 
     }
     listaServicios->goToPos(p);
-    return 2;
 }
-void VerEstadoDeColas(){cout<<"Estado colas";}
-void SolicitarTiquete(){}
-void Atender(){}
+
 int Administracion(){
     int op = 0;
     Enter();
     cout<<"1. Definir áreas"<<endl<<
         "2. Definir servicios disponibles"<<endl<<
-        "3. Regresar"<<endl<<
-        "¿Que desea realizar? ";
-    cin>>op;
+        "3. Regresar"<<endl;
+
+
     while(op!=3){
+        cout<<"¿Que desea realizar? ";cin>>op;
         if(op==1){
             printListaAreas();
         }
         if(op==2){
-            op = printListaServicios();
+            printListaServicios();
+
         }
         if(op<0 || op>3){
             cout<<"Opción no válida"<<endl;
         }
     }
-    cout<<"ADioooo";
     return 0;
 }
 string Estadisticas(){
