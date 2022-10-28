@@ -1,4 +1,3 @@
-//pruebaaaa
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
@@ -12,8 +11,6 @@
 #include "Tiquete.h"
 #include "ListaVentanillas.h"
 #include "Dictionary.h"
-
-
 
 using namespace std;
 List<Area*> *listaAreas;
@@ -36,7 +33,7 @@ void DefaultAreas(){
     listaAreas->append(informacion);
 
 }
-void printListAreas(List<Area*> *listaAreas){
+void printListAreas(){
     int p = listaAreas->getPos();
     cout<<"AREAS:"<<endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -49,34 +46,52 @@ void printListAreas(List<Area*> *listaAreas){
     listaAreas->goToPos(p);
 }
 
-void DefaultListaServicios(){
-    //listaServicios = new DLinkedList<Servicio*>();
-    listaServicios->append(new Servicio("Retiro", 'C');
-    listaServicios->append(aeaea);
-    listaServicios->append(new Servicio(generarNombreAleatorio(), area2));
-    listaServicios->append(new Servicio(generarNombreAleatorio(), area));
+Area* getArea(string nombreArea){
+    for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
+        Area *a = listaAreas->getElement();
+        if(a->getName()==nombreArea)
+            return a;
+    }
+    throw runtime_error("Area no encontrada");
+
 }
-void printListaServicios(List<Servicio*> *servicios){
+
+void DefaultServicios(){
+    listaServicios = new DLinkedList<Servicio*>();
+    listaServicios->append(new Servicio("Retiro", getArea("Cajas")));
+    listaServicios->append(new Servicio("Déposito", getArea("Cajas")));
+    listaServicios->append(new Servicio("Pagar recibo", getArea("Cajas")));
+    listaServicios->append(new Servicio("Pagar marchamo", getArea("Cajas")));
+    listaServicios->append(new Servicio("Cambiar cheque", getArea("Cajas")));
+    listaServicios->append(new Servicio("Retirar tarjeta", getArea("Información")));
+    listaServicios->append(new Servicio("Consulta", getArea("Información")));
+    listaServicios->append(new Servicio("Inversiones", getArea("Empresarial")));
+    listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al Cliente")));
+
+}
+void printListaServicios(){
     int p;
-    if(servicios->getPos() > 0 && servicios->getPos() < servicios->getSize())
-        p = servicios->getPos();
+    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
+        p = listaServicios->getPos();
     else
         p = 0;
-    servicios->goToStart();
+    listaServicios->goToStart();
     cout<<"SERVICIOS"<<endl;
-    for(int i = 0; i< servicios->getSize(); i++){
+    for(int i = 0; i< listaServicios->getSize(); i++){
 
-            Servicio *s = servicios->getElement();
+            Servicio *s = listaServicios->getElement();
             Area* areaService = s->getArea();
             cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
-            servicios->next();
+            listaServicios->next();
 
     }
-    servicios->goToPos(p);
+    listaServicios->goToPos(p);
 }
-List<Area*> *listaAreas = DefaultAreas();
 //-----------------------------------------Menú-------------------
 int main(){
-    DefaultAreasYServicios(List<Area*> *listaAreas, List<Servicio*> *listServicios);
+    DefaultAreas();
+    DefaultServicios();
+    printListaServicios();
+    listaServicios()->getElement();
+    listaServicios->remove();
 
-}
