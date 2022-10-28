@@ -66,7 +66,8 @@ Area* getArea(string nombreArea){
         if(a->getName()==nombreArea)
             return a;
     }
-    throw runtime_error("Area no encontrada");
+    cout<<("No existe un area con ese nombre")<<endl<<
+    "Asegurese que las mayúsculas y minúsculas coincidan";
 
 }
 
@@ -108,29 +109,85 @@ int printListaServicios(){
             listaServicios->next();
 
     }
+    cout<<"\n";
     listaServicios->goToPos(p);
 }
 
 int Administracion(){
-    int op = 0;
     Enter();
-    cout<<"1. Definir áreas"<<endl<<
+    int op = 0;
+    int opS=0;
+    int poseOg;
+    int p;
+    int pNew;
+    Servicio *s;
+    while(op!=3){
+
+        cout<<"1. Definir áreas"<<endl<<
         "2. Definir servicios disponibles"<<endl<<
         "3. Regresar"<<endl;
-
-
-    while(op!=3){
-        cout<<"¿Que desea realizar? ";cin>>op;
+        cout<<"¿Que desea realizar, administardor? ";cin>>op;
         if(op==1){
             printListaAreas();
         }
         if(op==2){
-            printListaServicios();
+            //Enter();
+            while(opS!=5){
+                    cout<<"1. Agregar servicio"<<endl<<
+                    "2. Borrar servicio"<<endl<<
+                    "3. Reordenar lista"<<endl<<
+                    "4. Ver lista"<<endl<<
+                    "5. Regresar"<<endl;
+
+                    cout<<"¿Que desea hacer con la lista de servicios?"<<endl; cin>>opS;
+                    //Agregar
+                    if(opS==1){
+                        string nombre;
+                        string nombreArea;
+                        cout<<"Escriba el nombre del servicio: "; cin>>nombre;
+                        cout<<"Escribe el nombre del area del servicio: "; cin>>nombreArea;
+                        listaServicios->append(new Servicio(nombre, getArea(nombreArea)));
+                    }
+                    //Borrar
+                    if(opS==2){
+                        poseOg = listaServicios->getPos();
+                        cout<<"Escriba la posición en la lista del servicio a borrar: "; cin>>p;
+                        listaServicios->goToPos(p);
+                        s = listaServicios->getElement();
+                        string name = s->getNombre();
+                        listaServicios->remove();
+                        cout<<"Se removió el servicio '"<<name<<"'"<<endl;
+                        listaServicios->goToPos(poseOg);
+                    }
+                    //Reaordenar elementos
+                    if(opS==3){
+                       poseOg = listaServicios->getPos();
+                       cout<<"Escriba la posición en la lista del servicio a ordenar: "; cin>>p;
+                       listaServicios->goToPos(p);
+                       s = listaServicios->getElement();
+                       listaServicios->remove();
+                       cout<<"Escriba la posición en la lista que lo desea insertar: "; cin>>pNew;
+                       listaServicios->goToPos(pNew);
+                       listaServicios->insert(s);
+                       cout<<"El servicio '"<<s->getNombre()<<"' se editó con éxito"<<endl;
+                       listaServicios->goToPos(poseOg);
+                    }
+                    //Mostrar Lista
+                    if(opS==4){
+                        printListaServicios();
+
+                    }
+                    if(opS<=0 || opS>5){
+                        cout<<"Opción no válida"<<endl;
+                        cin.get();
+                    }
+            }
 
         }
-        if(op<0 || op>3){
+        if(op<=0 || op>3){
             cout<<"Opción no válida"<<endl;
         }
+
     }
     return 0;
 }
@@ -163,7 +220,7 @@ int main(){
 			Administracion();
 		if(op==5)
 			cout<<"Estadisticas"<<endl;
-		if(op>6 || op<0)
+		if(op>6 || op<=0)
 			cout<<"Opcion no válida"<<endl;
 
 	}
