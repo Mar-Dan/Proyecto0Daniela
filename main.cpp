@@ -17,11 +17,11 @@ using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 
-void Enter(){
-    int i =0;
-    while(i!=50){
+void Enter(int i){
+    int j = 0;
+    while(j!=i){
         cout<<endl;
-        i++;
+        j++;
     }
 }
 void VerEstadoDeColas(){cout<<"Estado colas";}
@@ -47,7 +47,7 @@ void DefaultAreas(){
 
 }
 void printListaAreas(){
-    Enter();
+    Enter(40);
     int p = listaAreas->getPos();
     cout<<"AREAS:"<<endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -93,7 +93,7 @@ void deleteServicio(int i){
     return;
 }
 int printListaServicios(){
-    Enter();
+    Enter(40);
     int p;
     if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
         p = listaServicios->getPos();
@@ -114,7 +114,7 @@ int printListaServicios(){
 }
 
 int Administracion(){
-    Enter();
+    Enter(40);
     int op = 0;
     int opS=0;
     int poseOg;
@@ -122,18 +122,17 @@ int Administracion(){
     int pNew;
     Servicio *s;
     while(op!=3){
-        Enter();
+        Enter(40);
         cout<<"1. Definir áreas"<<endl<<
         "2. Definir servicios disponibles"<<endl<<
         "3. Regresar"<<endl;
         cout<<"¿Que desea realizar, administardor? ";cin>>op;
-        Enter();
+        Enter(40);
         if(op==1){
             printListaAreas();
         }
         if(op==2){
             while(opS!=5){
-
 
                     cout<<"1. Agregar servicio"<<endl<<
                     "2. Borrar servicio"<<endl<<
@@ -149,7 +148,7 @@ int Administracion(){
                         cout<<"Escriba el nombre del servicio: "; cin>>nombre;
                         cout<<"Escribe el nombre del area del servicio: "; cin>>nombreArea;
                         listaServicios->append(new Servicio(nombre, getArea(nombreArea)));
-                        Enter();
+                        Enter(40);
                     }
                     //Borrar
                     if(opS==2){
@@ -172,7 +171,7 @@ int Administracion(){
                        cout<<"Escriba la posición en la lista que lo desea insertar: "; cin>>pNew;
                        listaServicios->goToPos(pNew);
                        listaServicios->insert(s);
-                       cout<<"El servicio '"<<s->getNombre()<<"' se editó con éxito"<<"\n";
+                       cout<<"El servicio '"<<s->getNombre()<<"' se editó con éxito"<<endl;
                        listaServicios->goToPos(poseOg);
                     }
                     //Mostrar Lista
@@ -203,7 +202,7 @@ int main(){
     DefaultAreas();
     DefaultServicios();
     while(op!=6){
-        Enter();
+        Enter(40);
         cout<<"Bienvenid@"<<endl;
         cout<<"1. Ver estados de colas"<<endl<<
         "2. Solicitar tiquete"<<endl<<
