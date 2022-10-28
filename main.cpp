@@ -5,12 +5,12 @@
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "PriorityQueue.h"
+#include "Tiquete.h"
+#include "Ventana.h"
+//#include "Cliente.h"
 #include "Servicio.h"
 #include "Area.h"
-#include "Ventana.h"
-#include "Cliente.h"
-#include "Tiquete.h"
-#include "ListaVentanillas.h"
+//#include "ListaVentanillas.h"
 #include "Dictionary.h"
 
 using namespace std;
@@ -25,8 +25,47 @@ void Enter(){
     }
 }
 void VerEstadoDeColas(){cout<<"Estado colas";}
-void SolicitarTiquete(){}
-void Atender(){}
+void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
+    int numT;
+    string prefijo;
+    string codigo;
+
+    numT = area->getContadorT();
+    prefijo = area->getCodigo();
+
+    if (numT < 10){
+        codigo = prefijo + "0" + to_string(numT);
+    } else {
+        if (numT > 99){
+            throw runtime_error("Max ticket limit exceeded.");
+        } else {
+            codigo = prefijo + to_string(numT);
+        }
+    }
+    if (!area->servicios->contains(servicio)) {
+        string mensaje;
+        cout << servicio << endl;
+        mensaje = "Area " + area->getCodigo() + "does not attend " + servicio->getNombre();
+        throw runtime_error(mensaje);
+    } else {
+        area->getCodigo();
+    }
+}
+
+Tiquete* atender(Ventana* ventana){
+        Tiquete* tiqueteAtendido;
+        if(ventana->getArea()->cola->isEmpty()){
+                return NULL;
+        } else {
+            tiqueteAtendido = ventana->atender();
+        }
+        tiqueteAtendido->atenderTiquete(ventana);
+        ventana->getArea()->tiquetesAtendidos->append(tiqueteAtendido);
+        ventana->getArea()->tiempoT += tiqueteAtendido->getEspera();
+        ventana->getArea()->setContadorT();
+
+        return tiqueteAtendido;
+}
 
 //***********************************ADMINISTRACION******************************************
 
@@ -68,6 +107,7 @@ Area* getArea(string nombreArea){
     }
     cout<<("No existe un area con ese nombre")<<endl<<
     "Asegurese que las mayúsculas y minúsculas coincidan";
+    return NULL;
 
 }
 
@@ -92,7 +132,7 @@ void deleteServicio(int i){
     listaServicios->goToPos(origin);
     return;
 }
-int printListaServicios(){
+void printListaServicios(){
     Enter();
     int p;
     if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())

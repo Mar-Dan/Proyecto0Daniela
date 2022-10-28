@@ -4,16 +4,21 @@
 #include "LinkedPriorityQueue.h"
 #include "HeapPriorityQueue.h"
 #include "LinkedList.h"
-#include "Ventana.h"
-#include "Servicio.h"
+#include "Tiquete.h"
 #include "ArrayList.h"
-#include "ListaVentanillas.h"
+//#include "ListaVentanillas.h"
 #include <conio.h>
 #include <string>
 #include <iostream>
 
+using namespace std;
+
 class Ventana;
 class Tiquete;
+
+class Servicio;
+#include "Servicio.h"
+
 
 class Area{
 protected:
@@ -34,7 +39,7 @@ public:
         this->codigo = codigo;
         this->contadorT = contadorT;
         this->tiempoT = tiempoT;
-        List<Servicio*> *servicios = new LinkedList<Servicio*>();
+//        List<Servicio*> *servicios = new LinkedList<Servicio*>();
         //this->clientes = clientes;
     }
     Area(int cantVentanillas){

@@ -1,18 +1,19 @@
 #ifndef VENTANA_H
 #define VENTANA_H
-#include "Area.h"
+
+
+#include "Tiquete.h"
 #include "LinkedPriorityQueue.h"
-#include "ListaTiquetes.h"
 #include <conio.h>
 #include <string>
 #include <iostream>
 #include <stdlib.h>
 
-
-using std::to_string;
 using namespace std;
 
 class Area;
+class Tiquete;
+
 class Ventana{
 protected:
     Area *area;
@@ -21,15 +22,27 @@ protected:
     string lastCliente;
     int tiquetesAtendidos=0;
 
+private:
+    string generarCodigo(Area* area){
+        string prefijo;
+        int nVentana;
+        prefijo = area->getCodigo();
+        nVentana = area->getCantidadVentanillas();
+        area->setCantidadVentanillas(nVentana++);
+        if(nVentana < 10)
+            return prefijo = prefijo + "0" + to_string(nVentana);
+        else
+            return prefijo = prefijo + to_string(nVentana);
+    }
 
 public:
-    Ventana(){
-        this->area = area;
-        this->n = n;
-        this->codigo = codigo;
-        this->lastCliente = lastCliente;
-        this->tiquetesAtendidos = tiquetesAtendidos;
-    }
+//    Ventana(){
+//        this->area = area;
+//        this->n = n;
+//        this->codigo = codigo;
+//        this->lastCliente = lastCliente;
+//        this->tiquetesAtendidos = tiquetesAtendidos;
+//    }
     Ventana(Area* area){
         this->area = area;
         this->codigo = area->getCodigo();
@@ -49,12 +62,18 @@ public:
     string getCodigo(){
         return codigo;
     }
-    string Atender(PriorityQueue<string> *t){
-        string lastoCliente = t->min();
-        cout<<"Atendiendo a: "<<t->removeMin();
 
-        tiquetesAtendidos++;
-        return lastoCliente;
+    Tiquete* atender(){
+        Tiquete* tiqueteAtendido;
+
+        if(area->cola->isEmpty()){
+                return NULL;
+        }
+
+        tiqueteAtendido = area->cola->removeMin();
+        lastCliente = tiqueteAtendido->getCodigo();
+
+        return tiqueteAtendido;
     }
 
     /*void setlastCliente(){
