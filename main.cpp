@@ -52,6 +52,45 @@ void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     }
 }
 
+List<Tiquete*>* toArray(List<Area*>* listaAreas){
+    int total = 0;
+    Area* elemento;
+    List<Tiquete*> *L;
+    List<Tiquete*> *arrTiquetes;
+
+    listaAreas->goToStart();
+    while(!listaAreas->atEnd()){
+        elemento = listaAreas->getElement();
+        total += elemento->tiquetesAtendidos->getSize();
+        listaAreas->next();
+    }
+
+    arrTiquetes = new ArrayList<Tiquete*>(total);
+
+    listaAreas->goToStart();
+    while(!listaAreas->atEnd()){
+        elemento = listaAreas->getElement();
+        L = elemento->tiquetesAtendidos;
+        arrTiquetes->extends(L);
+        listaAreas->next();
+    }
+
+
+    return arrTiquetes;
+}
+
+int getTiqPref(List<Tiquete*>* arrTiquetes){
+    int preferenciales = 0;
+    arrTiquetes->goToStart();
+    while(!arrTiquetes->atEnd()){
+        Tiquete* tiquete = arrTiquetes->getElement();
+        arrTiquetes->next();
+        if(tiquete->getPrioridad() == 0)
+            preferenciales++;
+    }
+    return preferenciales;
+}
+
 Tiquete* atender(Ventana* ventana){
         Tiquete* tiqueteAtendido;
         if(ventana->getArea()->cola->isEmpty()){
