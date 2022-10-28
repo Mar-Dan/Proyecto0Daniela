@@ -124,3 +124,122 @@
 
 1666855541 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\mains.c
 
+1666936236 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\mains.c
+
+1666974411 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdexcept>
+	<string>
+	"LinkedPriorityQueue.h"
+	"DLinkedList.h"
+	"PriorityQueue.h"
+	"Servicio.h"
+	"Area.h"
+	"Ventana.h"
+	"Cliente.h"
+	"Tiquete.h"
+	"ListaVentanillas.h"
+	"Dictionary.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedpriorityqueue.h
+	<iostream>
+	<stdexcept>
+	"PriorityQueue.h"
+	"LinkedQueue.h"
+	"Tiquete.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\priorityqueue.h
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedqueue.h
+	<stdexcept>
+	<iostream>
+	"Node.h"
+	"Queue.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\node.h
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\queue.h
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\tiquete.h
+	<stdexcept>
+	<ctime>
+	<string>
+	"Ventana.h"
+	"Servicio.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\ventana.h
+	"Area.h"
+	"LinkedPriorityQueue.h"
+	"ListaTiquetes.h"
+	<conio.h>
+	<string>
+	<iostream>
+	<stdlib.h>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
+	"Node.h"
+	"LinkedPriorityQueue.h"
+	"HeapPriorityQueue.h"
+	"LinkedList.h"
+	"Ventana.h"
+	"Servicio.h"
+	"ArrayList.h"
+	"ListaVentanillas.h"
+	<conio.h>
+	<string>
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\heappriorityqueue.h
+	<stdexcept>
+	"PriorityQueue.h"
+	"KVPair.h"
+	"MinHeap.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\kvpair.h
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\minheap.h
+	<stdexcept>
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedlist.h
+	"List.h"
+	"Node.h"
+	<stdexcept>
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\list.h
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\servicio.h
+	"iostream"
+	<string>
+	"Area.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\arraylist.h
+	"List.h"
+	<stdexcept>
+	<iostream>
+	"Tiquete.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\listaventanillas.h
+	"LinkedList.h"
+	"Ventana.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\listatiquetes.h
+	"LinkedPriorityQueue.h"
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\dlinkedlist.h
+	"List.h"
+	"DNode.h"
+	<stdexcept>
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\dnode.h
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\cliente.h
+	<cstdlib>
+	<iostream>
+
+1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\dictionary.h
+

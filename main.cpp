@@ -1,7 +1,7 @@
-//pruebaaaa
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
+#include <string>
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "PriorityQueue.h"
@@ -13,12 +13,22 @@
 #include "ListaVentanillas.h"
 #include "Dictionary.h"
 
-
-
 using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 
+void Enter(){
+    int i =0;
+    while(i!=50){
+        cout<<endl;
+        i++;
+    }
+}
+void VerEstadoDeColas(){cout<<"Estado colas";}
+void SolicitarTiquete(){}
+void Atender(){}
+
+//***********************************ADMINISTRACION******************************************
 
 void DefaultAreas(){
     listaAreas = new DLinkedList<Area*>();
@@ -36,7 +46,8 @@ void DefaultAreas(){
     listaAreas->append(informacion);
 
 }
-void printListAreas(List<Area*> *listaAreas){
+void printListaAreas(){
+    Enter();
     int p = listaAreas->getPos();
     cout<<"AREAS:"<<endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -49,34 +60,115 @@ void printListAreas(List<Area*> *listaAreas){
     listaAreas->goToPos(p);
 }
 
-void DefaultListaServicios(){
-    //listaServicios = new DLinkedList<Servicio*>();
-    listaServicios->append(new Servicio("Retiro", 'C');
-    listaServicios->append(aeaea);
-    listaServicios->append(new Servicio(generarNombreAleatorio(), area2));
-    listaServicios->append(new Servicio(generarNombreAleatorio(), area));
+Area* getArea(string nombreArea){
+    for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
+        Area *a = listaAreas->getElement();
+        if(a->getName()==nombreArea)
+            return a;
+    }
+    throw runtime_error("Area no encontrada");
+
 }
-void printListaServicios(List<Servicio*> *servicios){
+
+void DefaultServicios(){
+    listaServicios = new DLinkedList<Servicio*>();
+    listaServicios->append(new Servicio("Retiro", getArea("Cajas")));
+    listaServicios->append(new Servicio("Depósito", getArea("Cajas")));
+    listaServicios->append(new Servicio("Pagar recibo", getArea("Cajas")));
+    listaServicios->append(new Servicio("Pagar marchamo", getArea("Cajas")));
+    listaServicios->append(new Servicio("Cambiar cheque", getArea("Cajas")));
+    listaServicios->append(new Servicio("Retirar tarjeta", getArea("Información")));
+    listaServicios->append(new Servicio("Consulta", getArea("Información")));
+    listaServicios->append(new Servicio("Inversiones", getArea("Empresarial")));
+    listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al Cliente")));
+
+}
+void deleteServicio(int i){
+    cout<<"¿Cual servicio desea borrar? "; cin>>i;
+    int origin = listaServicios->getPos();
+    listaServicios->goToPos(i);
+    listaServicios->remove();
+    listaServicios->goToPos(origin);
+    return;
+}
+int printListaServicios(){
+    Enter();
     int p;
-    if(servicios->getPos() > 0 && servicios->getPos() < servicios->getSize())
-        p = servicios->getPos();
+    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
+        p = listaServicios->getPos();
     else
         p = 0;
-    servicios->goToStart();
+    listaServicios->goToStart();
     cout<<"SERVICIOS"<<endl;
-    for(int i = 0; i< servicios->getSize(); i++){
+    for(int i = 0; i< listaServicios->getSize(); i++){
 
-            Servicio *s = servicios->getElement();
+            Servicio *s = listaServicios->getElement();
             Area* areaService = s->getArea();
             cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
-            servicios->next();
+            listaServicios->next();
 
     }
-    servicios->goToPos(p);
+    listaServicios->goToPos(p);
 }
-List<Area*> *listaAreas = DefaultAreas();
+
+int Administracion(){
+    int op = 0;
+    Enter();
+    cout<<"1. Definir áreas"<<endl<<
+        "2. Definir servicios disponibles"<<endl<<
+        "3. Regresar"<<endl;
+
+
+    while(op!=3){
+        cout<<"¿Que desea realizar? ";cin>>op;
+        if(op==1){
+            printListaAreas();
+        }
+        if(op==2){
+            printListaServicios();
+
+        }
+        if(op<0 || op>3){
+            cout<<"Opción no válida"<<endl;
+        }
+    }
+    return 0;
+}
+string Estadisticas(){
+    return "helloo mrs. clown";
+}
 //-----------------------------------------Menú-------------------
 int main(){
-    DefaultAreasYServicios(List<Area*> *listaAreas, List<Servicio*> *listServicios);
+    int op = 0;
+    DefaultAreas();
+    DefaultServicios();
+    while(op!=6){
+        Enter();
+        cout<<"Bienvenid@"<<endl;
+        cout<<"1. Ver estados de colas"<<endl<<
+        "2. Solicitar tiquete"<<endl<<
+        "3. Atender"<<endl<<
+        "4. Administración"<<endl<<
+        "5. Estadísticas"<<endl<<
+        "6. Salir"<<endl;
+
+		cout<<"Que desea realizar? "; cin>>op;
+		if(op ==1)
+			cout<<"VerEstadoDeCola();"<<endl;
+		if(op==2)
+			cout<<"SolicitarTiquete();"<<endl;
+		if(op==3)
+			cout<<"Atender"<<endl;
+		if(op==4)
+			Administracion();
+		if(op==5)
+			cout<<"Estadisticas"<<endl;
+		if(op>6 || op<0)
+			cout<<"Opcion no válida"<<endl;
+
+	}
+	cout<<"\nGracias por su vista"<<endl;
+	return 0;
+
 
 }
