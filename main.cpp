@@ -87,11 +87,39 @@ void printListaServicios(){
     }
     listaServicios->goToPos(p);
 }
+void VerEstadoDeColas(){cout<<"Estado colas";}
+void SolicitarTiquete(){}
+void Atender(){}
+void Administracion(){}
+string Estadisticas(){
+    return "helloo mrs. clown";
+}
 //-----------------------------------------Menú-------------------
 int main(){
+    int op1;
     DefaultAreas();
     DefaultServicios();
-    printListaServicios();
-    listaServicios()->getElement();
-    listaServicios->remove();
-
+    cout<<"Bienvenid@"<<endl;
+    cout<<"1. Ver estados de colas"<<endl<<
+    "2. Solicitar tiquete"<<endl<<
+    "3. Atender"<<endl<<
+    "4. Administración"<<endl<<
+    "5. Estadísticas"<<endl<<
+    "6. Salir"<<endl;
+    cout<<"¿Que desea realizar? "; cin>>op1;
+    while(op1<6){
+        if(op1 == 1)
+            VerEstadoDeColas();
+        if(op1 == 2)
+            SolicitarTiquete();
+        if(op1 == 3)
+            Atender();
+        if(op1 == 4)
+            Administracion();
+        if(op1 == 5)
+            Estadisticas();
+        else
+            throw runtime_error("No es una opción válida");
+    }
+    cout<<"Gracias por su vista";
+}
