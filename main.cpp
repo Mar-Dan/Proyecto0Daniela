@@ -122,17 +122,19 @@ int Administracion(){
     int pNew;
     Servicio *s;
     while(op!=3){
-
+        Enter();
         cout<<"1. Definir áreas"<<endl<<
         "2. Definir servicios disponibles"<<endl<<
         "3. Regresar"<<endl;
         cout<<"¿Que desea realizar, administardor? ";cin>>op;
+        Enter();
         if(op==1){
             printListaAreas();
         }
         if(op==2){
-            //Enter();
             while(opS!=5){
+
+
                     cout<<"1. Agregar servicio"<<endl<<
                     "2. Borrar servicio"<<endl<<
                     "3. Reordenar lista"<<endl<<
@@ -147,6 +149,7 @@ int Administracion(){
                         cout<<"Escriba el nombre del servicio: "; cin>>nombre;
                         cout<<"Escribe el nombre del area del servicio: "; cin>>nombreArea;
                         listaServicios->append(new Servicio(nombre, getArea(nombreArea)));
+                        Enter();
                     }
                     //Borrar
                     if(opS==2){
@@ -169,7 +172,7 @@ int Administracion(){
                        cout<<"Escriba la posición en la lista que lo desea insertar: "; cin>>pNew;
                        listaServicios->goToPos(pNew);
                        listaServicios->insert(s);
-                       cout<<"El servicio '"<<s->getNombre()<<"' se editó con éxito"<<endl;
+                       cout<<"El servicio '"<<s->getNombre()<<"' se editó con éxito"<<"\n";
                        listaServicios->goToPos(poseOg);
                     }
                     //Mostrar Lista
