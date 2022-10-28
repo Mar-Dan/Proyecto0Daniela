@@ -1,11 +1,13 @@
 #ifndef SERVICIO_H
 #define SERVICIO_H
 
-#include "iostream"
+#include <iostream>
 #include<string>
 #include "Area.h"
-class Area;
 using namespace std;
+class Area;
+
+#include "Tiquete.h"
 class Servicio
 {
    private:
@@ -28,13 +30,15 @@ class Servicio
             tiqDados = 0;
             contadorT = 0;
         }
-        virtual ~Servicio() {}
-
 
         string getNombre() {return nombre;}
         int getTiqDados() {return tiqDados;}
         int getContadorT() {return contadorT;}
         Area* getArea(){return area;}
+
+        void addContadorT(){
+            contadorT++;
+        }
 
         friend ostream& operator << (ostream& os, const Servicio& m)
         {
