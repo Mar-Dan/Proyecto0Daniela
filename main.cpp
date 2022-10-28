@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
+#include <string>
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "PriorityQueue.h"
@@ -96,9 +97,10 @@ string Estadisticas(){
 }
 //-----------------------------------------Menú-------------------
 int main(){
-    int op1;
-    DefaultAreas();
-    DefaultServicios();
+    int op = 0;
+    bool valido = false;
+    //DefaultAreas();
+    //DefaultServicios();
     cout<<"Bienvenid@"<<endl;
     cout<<"1. Ver estados de colas"<<endl<<
     "2. Solicitar tiquete"<<endl<<
@@ -106,20 +108,25 @@ int main(){
     "4. Administración"<<endl<<
     "5. Estadísticas"<<endl<<
     "6. Salir"<<endl;
-    cout<<"¿Que desea realizar? "; cin>>op1;
-    while(op1<6){
-        if(op1 == 1)
-            VerEstadoDeColas();
-        if(op1 == 2)
-            SolicitarTiquete();
-        if(op1 == 3)
-            Atender();
-        if(op1 == 4)
-            Administracion();
-        if(op1 == 5)
-            Estadisticas();
-        else
-            throw runtime_error("No es una opción válida");
-    }
-    cout<<"Gracias por su vista";
+    cout<<"¿Que desea realizar? ";
+    while(op!=6){
+		cout<<"Que desea realizar? "; cin>>op;
+		if(op ==1)
+			cout<<"VerEstadoDeCola();"<<endl;
+		if(op==2)
+			cout<<"SolicitarTiquete();"<<endl;
+		if(op==3)
+			cout<<"Atender"<<endl;
+		if(op==4)
+			cout<<"Admin"<<endl;
+		if(op==5)
+			cout<<"Estadisticas"<<endl;
+		if(op>6 || op<0)
+			cout<<"Opcion no vlaida"<<endl;
+
+	}
+	cout<<"Gracias por su vista"<<endl;
+	return 0;
+
+
 }
