@@ -24,8 +24,117 @@ void Enter(int i){
         j++;
     }
 }
+int printListaServicios(){
+    Enter(40);
+    int p;
+    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
+        p = listaServicios->getPos();
+    else
+        p = 0;
+    listaServicios->goToStart();
+    cout<<"SERVICIOS"<<endl;
+    for(int i = 0; i< listaServicios->getSize(); i++){
+
+            Servicio *s = listaServicios->getElement();
+            Area* areaService = s->getArea();
+            cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
+            listaServicios->next();
+
+    }
+    cout<<"\n";
+    listaServicios->goToPos(p);
+}
 void VerEstadoDeColas(){cout<<"Estado colas";}
-void SolicitarTiquete(){}
+//****************************SOLICITAR TIQUETE**********************
+void generarTiquete(Area* area, Servicio* servicio, int prioridad){
+    int numT;
+    string prefijo;
+    string codigo;
+    Tiquete* tiqueteN;
+
+    servicio->addTiqDados();
+    numT = area->getTiquetesRecibidos();
+    area->setClientes();
+    prefijo = area->getCodigo();
+//    cout << prefijo << endl;
+
+    if (numT < 10){
+        codigo = prefijo + "0" + to_string(numT);
+    } else {
+        if (numT > 99){
+            throw runtime_error("Max ticket limit exceeded.");
+        } else {
+            codigo = prefijo + to_string(numT);
+        }
+    }
+    if (!area->servicios->contains(servicio)) {
+        string mensaje;
+        cout << servicio << endl;
+        mensaje = "Area " + area->getCodigo() + "does not attend " + servicio->getNombre();
+        throw runtime_error(mensaje);
+    } else {
+        tiqueteN = new Tiquete(prioridad, servicio, codigo);
+        area->cola->insert(tiqueteN, prioridad);
+    }
+}
+
+int getTiqPref(List<Tiquete*>* arrTiquetes){
+    int preferenciales = 0;
+    arrTiquetes->goToStart();
+    while(!arrTiquetes->atEnd()){
+        Tiquete* tiquete = arrTiquetes->getElement();
+        arrTiquetes->next();
+        if(tiquete->getPrioridad() == 0)
+            preferenciales++;
+    }
+    return preferenciales;
+}
+
+Tiquete* atender(Ventana* ventana){
+        Tiquete* tiqueteAtendido;
+        if(ventana->getArea()->cola->isEmpty()){
+                return NULL;
+        } else {
+            tiqueteAtendido = ventana->getArea()->cola->removeMin();
+        }
+        tiqueteAtendido->atenderTiquete(ventana);
+        ventana->getArea()->tiquetesAtendidos->append(tiqueteAtendido);
+        ventana->getArea()->tiempoT += tiqueteAtendido->getEspera();
+        ventana->getArea()->setContadorT();
+
+        return tiqueteAtendido;
+
+}
+
+List<Tiquete*>* toArray(List<Area*>* listaAreas){
+    int total = 0;
+    Area* elemento;
+    List<Tiquete*> *L;
+    List<Tiquete*> *arrTiquetes;
+
+    listaAreas->goToStart();
+    while(!listaAreas->atEnd()){
+        elemento = listaAreas->getElement();
+        total += elemento->tiquetesAtendidos->getSize();
+        listaAreas->next();
+    }
+
+    arrTiquetes = new ArrayList<Tiquete*>(total);
+
+    listaAreas->goToStart();
+    while(!listaAreas->atEnd()){
+        elemento = listaAreas->getElement();
+        L = elemento->tiquetesAtendidos;
+        arrTiquetes->extends(L);
+        listaAreas->next();
+    }
+
+
+    return arrTiquetes;
+}
+void SolicitarTiquete(){
+
+}
 void Atender(){}
 
 //***********************************ADMINISTRACION******************************************
@@ -68,7 +177,6 @@ Area* getArea(string nombreArea){
     }
     cout<<("No existe un area con ese nombre")<<endl<<
     "Asegurese que las mayúsculas y minúsculas coincidan";
-
 }
 
 void DefaultServicios(){
@@ -82,7 +190,6 @@ void DefaultServicios(){
     listaServicios->append(new Servicio("Consulta", getArea("Información")));
     listaServicios->append(new Servicio("Inversiones", getArea("Empresarial")));
     listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al Cliente")));
-
 }
 void deleteServicio(int i){
     cout<<"¿Cual servicio desea borrar? "; cin>>i;
@@ -92,26 +199,7 @@ void deleteServicio(int i){
     listaServicios->goToPos(origin);
     return;
 }
-int printListaServicios(){
-    Enter(40);
-    int p;
-    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
-        p = listaServicios->getPos();
-    else
-        p = 0;
-    listaServicios->goToStart();
-    cout<<"SERVICIOS"<<endl;
-    for(int i = 0; i< listaServicios->getSize(); i++){
 
-            Servicio *s = listaServicios->getElement();
-            Area* areaService = s->getArea();
-            cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
-            listaServicios->next();
-
-    }
-    cout<<"\n";
-    listaServicios->goToPos(p);
-}
 
 int Administracion(){
     Enter(40);
@@ -177,7 +265,6 @@ int Administracion(){
                     //Mostrar Lista
                     if(opS==4){
                         printListaServicios();
-
                     }
                     if(opS<=0 || opS>5){
                         cout<<"Opción no válida"<<endl;
@@ -228,6 +315,4 @@ int main(){
 	}
 	cout<<"\nGracias por su vista"<<endl;
 	return 0;
-
-
 }
