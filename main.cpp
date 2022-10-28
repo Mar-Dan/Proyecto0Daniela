@@ -17,7 +17,13 @@ using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 
-
+void Enter(){
+    int i =0;
+    while(i!=50){
+        cout<<endl;
+        i++;
+    }
+}
 void DefaultAreas(){
     listaAreas = new DLinkedList<Area*>();
     Area* cajas = new Area();
@@ -34,7 +40,7 @@ void DefaultAreas(){
     listaAreas->append(informacion);
 
 }
-void printListAreas(){
+void printListaAreas(){
     int p = listaAreas->getPos();
     cout<<"AREAS:"<<endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -70,7 +76,7 @@ void DefaultServicios(){
     listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al Cliente")));
 
 }
-void printListaServicios(){
+int printListaServicios(){
     int p;
     if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
         p = listaServicios->getPos();
@@ -87,29 +93,51 @@ void printListaServicios(){
 
     }
     listaServicios->goToPos(p);
+    return 2;
 }
 void VerEstadoDeColas(){cout<<"Estado colas";}
 void SolicitarTiquete(){}
 void Atender(){}
-void Administracion(){}
+int Administracion(){
+    int op = 0;
+    Enter();
+    cout<<"1. Definir áreas"<<endl<<
+        "2. Definir servicios disponibles"<<endl<<
+        "3. Regresar"<<endl<<
+        "¿Que desea realizar? ";
+    cin>>op;
+    while(op!=3){
+        if(op==1){
+            printListaAreas();
+        }
+        if(op==2){
+            op = printListaServicios();
+        }
+        if(op<0 || op>3){
+            cout<<"Opción no válida"<<endl;
+        }
+    }
+    cout<<"ADioooo";
+    return 0;
+}
 string Estadisticas(){
     return "helloo mrs. clown";
 }
 //-----------------------------------------Menú-------------------
 int main(){
     int op = 0;
-    bool valido = false;
-    //DefaultAreas();
-    //DefaultServicios();
-    cout<<"Bienvenid@"<<endl;
-    cout<<"1. Ver estados de colas"<<endl<<
-    "2. Solicitar tiquete"<<endl<<
-    "3. Atender"<<endl<<
-    "4. Administración"<<endl<<
-    "5. Estadísticas"<<endl<<
-    "6. Salir"<<endl;
-    cout<<"¿Que desea realizar? ";
+    DefaultAreas();
+    DefaultServicios();
     while(op!=6){
+        Enter();
+        cout<<"Bienvenid@"<<endl;
+        cout<<"1. Ver estados de colas"<<endl<<
+        "2. Solicitar tiquete"<<endl<<
+        "3. Atender"<<endl<<
+        "4. Administración"<<endl<<
+        "5. Estadísticas"<<endl<<
+        "6. Salir"<<endl;
+
 		cout<<"Que desea realizar? "; cin>>op;
 		if(op ==1)
 			cout<<"VerEstadoDeCola();"<<endl;
@@ -118,14 +146,14 @@ int main(){
 		if(op==3)
 			cout<<"Atender"<<endl;
 		if(op==4)
-			cout<<"Admin"<<endl;
+			Administracion();
 		if(op==5)
 			cout<<"Estadisticas"<<endl;
 		if(op>6 || op<0)
-			cout<<"Opcion no vlaida"<<endl;
+			cout<<"Opcion no válida"<<endl;
 
 	}
-	cout<<"Gracias por su vista"<<endl;
+	cout<<"\nGracias por su vista"<<endl;
 	return 0;
 
 
