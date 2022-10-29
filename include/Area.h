@@ -23,7 +23,7 @@ class Servicio;
 class Area{
 protected:
     List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
-    int cantVentanillas;
+    int cantVentanillas=0;
     string nombre;
     string codigo;
     int clientes;
@@ -49,6 +49,14 @@ public:
     Area(string nombre){
         this->nombre = nombre;
         this->clientes = clientes;
+    }
+    Area(string name, int cVentanillas){
+        this->ventanillas = ventanillas;
+        this->nombre = name;
+        this->codigo = codigo;
+        this->contadorT = contadorT;
+        this->tiempoT = tiempoT;
+        this->cantVentanillas = cVentanillas;
     }
     void setName(string n){
         nombre = n;
