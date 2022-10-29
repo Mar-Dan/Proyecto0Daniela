@@ -2,9 +2,7 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <string>
-#include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
-#include "PriorityQueue.h"
 #include "Tiquete.h"
 #include "Ventana.h"
 //#include "Cliente.h"
@@ -13,25 +11,26 @@
 //#include "ListaVentanillas.h"
 #include "Dictionary.h"
 
+
 using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 
 void Enter(){
-    int i =0;
-    while(i!=50){
-        cout<<endl;
-        i++;
-    }
+    system("CLS");
 }
 void VerEstadoDeColas(){cout<<"Estado colas";}
 void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     int numT;
     string prefijo;
     string codigo;
+    Tiquete* tiqueteN;
 
+    servicio->addContadorT();
     numT = area->getContadorT();
+    area->setContadorT();
     prefijo = area->getCodigo();
+//    cout << prefijo << endl;
 
     if (numT < 10){
         codigo = prefijo + "0" + to_string(numT);
@@ -48,7 +47,8 @@ void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
         mensaje = "Area " + area->getCodigo() + "does not attend " + servicio->getNombre();
         throw runtime_error(mensaje);
     } else {
-        area->getCodigo();
+        tiqueteN = new Tiquete(prioridad, servicio, codigo);
+        area->cola->insert(tiqueteN, prioridad);
     }
 }
 
@@ -64,7 +64,9 @@ List<Tiquete*>* toArray(List<Area*>* listaAreas){
         total += elemento->tiquetesAtendidos->getSize();
         listaAreas->next();
     }
-
+    if (total < 1){
+        thro
+    }
     arrTiquetes = new ArrayList<Tiquete*>(total);
 
     listaAreas->goToStart();
@@ -101,7 +103,7 @@ Tiquete* atender(Ventana* ventana){
         tiqueteAtendido->atenderTiquete(ventana);
         ventana->getArea()->tiquetesAtendidos->append(tiqueteAtendido);
         ventana->getArea()->tiempoT += tiqueteAtendido->getEspera();
-        ventana->getArea()->setContadorT();
+        ventana->getArea()->addClientes();
 
         return tiqueteAtendido;
 }
@@ -192,6 +194,39 @@ void printListaServicios(){
     listaServicios->goToPos(p);
 }
 
+void menuPrintVentanas(){
+    Enter();
+    listaAreas->goToStart();
+    Area* local;
+    int i = 0;
+    cout << "Indique el número del área que desea consultar" << endl;
+    while(!listaAreas->atEnd()){
+        cout << i << ". " << listaAreas->getElement()->getCodigo() << endl;
+        i++;
+        listaAreas->next();
+    }
+    bool selec = false;
+    while(!selec){
+        try{
+            cout << "Área a consultar: "; cin >> i;
+            listaAreas->goToPos(i);
+            local = listaAreas->getElement();
+            selec = true;
+        } catch(runtime_error e) {
+            cout << "Selección inválida >:(" << endl << endl;
+        }
+    }
+    Enter();
+    local->getVentanillas()->goToStart();
+    while(!local->getVentanillas()->atEnd()){
+        cout << "Ventanilla: " << local->getVentanillas()->getElement()->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
+        local->getVentanillas()->next();
+    }
+    string d;
+    cout << "Presione enter para regresar al menú."; cin >> d;
+    return;
+}
+
 int Administracion(){
     Enter();
     int op = 0;
@@ -270,8 +305,54 @@ int Administracion(){
     }
     return 0;
 }
-string Estadisticas(){
-    return "helloo mrs. clown";
+void Estadisticas(){
+    int op = 0;
+    while(op!=6){
+        List<Tiquete*>* tiquetesTotal = toArray(listaAreas);
+        Enter();
+        cout<<"Menú de estadísticas"<<endl;
+        cout<<"1. Tiempo de espera promedio por áreas"<<endl<<
+        "2. Total de tiquetes dispensados por área"<<endl<<
+        "3. Total de tiquetes atendidos por ventanilla"<<endl<<
+        "4. Total de tiquetes dispensados por servicio"<<endl<<
+        "5. Total de tiquetes preferenciales dispensados en todo el sistema"<<endl<<
+        "6. Salir"<<endl;
+
+        cout<<"Que desea realizar? "; cin>>op;
+        if(op ==1){
+            listaAreas->goToStart();
+            Area* local;
+            while(!listaAreas->atEnd()){
+                local = listaAreas->getElement();
+                cout << "Área: " << local->getCodigo() << "\t Tiempo de espera promedio: " << local->getTiempoPromedio() << endl;
+                listaAreas->next();
+            }
+        }
+        else if(op==2){
+            listaAreas->goToStart();
+            Area* local;
+            while(!listaAreas->atEnd()){
+                local = listaAreas->getElement();
+                cout << "Área: " << local->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
+                listaAreas->next();
+            }
+        }
+        else if(op==3){
+            menuPrintVentanas();
+        }
+        else if(op==4){
+            listaServicios->goToStart();
+            while(!listaServicios->atEnd()){
+                cout << "Servicio: " << listaServicios->getElement()->getNombre() << "\t Tiquetes dispensados: " << listaServicios->getElement()->getTiqDados() << endl;
+                listaServicios->next();
+            }
+        }
+        else if(op==5)
+            cout<<"Estadisticas"<<endl;
+        else if(op>6 || op<=0)
+            cout<<"Opcion no válida"<<endl;
+
+    }
 }
 //-----------------------------------------Menú-------------------
 int main(){
@@ -298,7 +379,7 @@ int main(){
 		if(op==4)
 			Administracion();
 		if(op==5)
-			cout<<"Estadisticas"<<endl;
+			Estadisticas();
 		if(op>6 || op<=0)
 			cout<<"Opcion no válida"<<endl;
 

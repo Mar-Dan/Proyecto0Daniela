@@ -245,3 +245,103 @@
 
 1666925251 source:c:\users\personal\documents\github\proyecto0daniela\mains.c
 
+1667002768 source:c:\users\personal\documents\github\proyecto0daniela\main.cpp
+	<iostream>
+	<cstdlib>
+	<stdexcept>
+	<string>
+	"DLinkedList.h"
+	"Tiquete.h"
+	"Ventana.h"
+	"Servicio.h"
+	"Area.h"
+	"Dictionary.h"
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\linkedpriorityqueue.h
+	<iostream>
+	<stdexcept>
+	"PriorityQueue.h"
+	"LinkedQueue.h"
+	"Tiquete.h"
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\priorityqueue.h
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\linkedqueue.h
+	<stdexcept>
+	<iostream>
+	"Node.h"
+	"Queue.h"
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\node.h
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\queue.h
+
+1666996726 c:\users\personal\documents\github\proyecto0daniela\include\tiquete.h
+	<stdexcept>
+	<ctime>
+	"Servicio.h"
+	"Ventana.h"
+
+1666996726 c:\users\personal\documents\github\proyecto0daniela\include\servicio.h
+	<iostream>
+	<string>
+	"Area.h"
+	"Tiquete.h"
+
+1667000496 c:\users\personal\documents\github\proyecto0daniela\include\area.h
+	"Node.h"
+	"LinkedPriorityQueue.h"
+	"HeapPriorityQueue.h"
+	"LinkedList.h"
+	"Tiquete.h"
+	"ArrayList.h"
+	<conio.h>
+	<string>
+	<iostream>
+	"Servicio.h"
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\heappriorityqueue.h
+	<stdexcept>
+	"PriorityQueue.h"
+	"KVPair.h"
+	"MinHeap.h"
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\kvpair.h
+	<iostream>
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\minheap.h
+	<stdexcept>
+	<iostream>
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\linkedlist.h
+	"List.h"
+	"Node.h"
+	<stdexcept>
+	<iostream>
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\list.h
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\arraylist.h
+	"List.h"
+	<stdexcept>
+	<iostream>
+	"Tiquete.h"
+
+1666996726 c:\users\personal\documents\github\proyecto0daniela\include\ventana.h
+	"Tiquete.h"
+	"LinkedPriorityQueue.h"
+	<conio.h>
+	<string>
+	<iostream>
+	<stdlib.h>
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\dlinkedlist.h
+	"List.h"
+	"DNode.h"
+	<stdexcept>
+	<iostream>
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\dnode.h
+
+1666925251 c:\users\personal\documents\github\proyecto0daniela\include\dictionary.h
+

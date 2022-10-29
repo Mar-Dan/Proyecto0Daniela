@@ -26,11 +26,11 @@ protected:
     int cantVentanillas;
     string nombre;
     string codigo;
-    int clientes;
+    int clientes=0;
     int contadorT=0;
 public:
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
-    PriorityQueue<Tiquete*>* cola = new HeapPriorityQueue<Tiquete*>(100);
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);
     double tiempoT = 0;
     Area(){
@@ -94,11 +94,14 @@ public:
         ventanillas->goToPos(p);
 
     }
-    void atender(){
-
+    int getClientes(){
+        return clientes;
+    }
+    void addClientes(){
+        clientes++;
     }
     void setContadorT(){
-        this->contadorT = contadorT + 1;
+        contadorT++;
     }
     int getContadorT(){
         return contadorT;
@@ -109,6 +112,10 @@ public:
     double getTiempoT(){
         return tiempoT;
     }
+    double getTiempoPromedio(){
+        return tiempoT / tiquetesAtendidos->getSize();
+    }
+
     List<Servicio*>* getServicios(){
         return servicios;
     }
