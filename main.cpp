@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <string>
+#include<ios>
+#include<limits>
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "PriorityQueue.h"
@@ -147,8 +149,8 @@ Area* getArea(string codeArea){
         if(a->getName()==codeArea)
             return a;
     }
-    cout<<("No existe un area con ese código")<<endl<<
-    "Asegurese que las mayúsculas y minúsculas coincidan";
+    cout<<("No existe un area con ese nombre")<<endl<<
+    "Asegurese que las mayúsculas y minúsculas coincidan"<<endl;
     return nullptr;
 
 }
@@ -167,6 +169,7 @@ Area* crearArea(string nombre, int cantVentanillas){
         listaVentanillas->append(new Ventana(nArea));
     nArea->setVentanillas(listaVentanillas);
     nArea->setCantidadVentanillas(cantVentanillas);
+    Enter();
     cout<<"Area creada exitosamente"<<endl;
     return nArea;
 }
@@ -250,10 +253,12 @@ int Administracion(){
                     "¿Que desea hacer con la lista de áreas? "; cin>>opA;
 
                 if(opA==1){
-                    char nombreArea[60];
+                    string nombreArea;
                     int cantVentanillas;
-                    cout<<"Escriba el nombre del área: ";gets(nombreArea);
-                    cout<<"¿Cuantas ventanillas puede tener el área?"; cin>>cantVentanillas;
+                    cout<<"Escriba el nombre del área: ";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, nombreArea);
+                    cout<<"¿Cuantas ventanillas puede tener el área? "; cin>>cantVentanillas;
                     listaAreas->append(crearArea(nombreArea, cantVentanillas));
 
                 }
@@ -264,6 +269,7 @@ int Administracion(){
                     a = listaAreas->getElement();
                     string name = a->getName();
                     listaAreas->remove();
+                    Enter();
                     cout<<"Se removió el servicio '"<<name<<"'"<<endl;
                     listaAreas->goToPos(poseOg);
                 }
@@ -289,14 +295,18 @@ int Administracion(){
                     //Agregar
                     if(opS==1){
                         string nombre;
-                        char nombreArea[100];
-                        cout<<"Escriba el nombre del servicio: "; getline(cin, nombre);
+                        string nombreArea;
+                        cout<<"Escriba el nombre del servicio: ";
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        getline(cin, nombre);
                         if(checkServicio(nombre)){
                             Enter();
                             cout<<"Ya existe un servicio del mismo nombre"<<endl;
                         }
                         else{
-                            cout<<"Escribe el nombre del area del servicio: "; cin>>nombreArea;
+                            cout<<"Escribe el nombre del area del servicio: ";
+                            //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            getline(cin, nombreArea);
                             listaServicios->append(new Servicio(nombre, getArea(nombreArea)));
                         }
                     }
