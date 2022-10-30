@@ -41,7 +41,7 @@ void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     if (!area->servicios->contains(servicio)) {
         string mensaje;
         cout << servicio << endl;
-        mensaje = "Area " + area->getCodigo() + "does not attend " + servicio->getNombre();
+        mensaje = "Area " + area->toStringCodigo() + "does not attend " + servicio->getNombre();
         throw runtime_error(mensaje);
     } else {
         area->getCodigo();
@@ -141,13 +141,13 @@ void printListaAreas(){
     listaAreas->goToPos(p);
 }
 
-Area* getArea(string nombreArea){
+Area* getArea(string codeArea){
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
         Area *a = listaAreas->getElement();
-        if(a->getName()==nombreArea)
+        if(a->getName()==codeArea)
             return a;
     }
-    cout<<("No existe un area con ese nombre")<<endl<<
+    cout<<("No existe un area con ese código")<<endl<<
     "Asegurese que las mayúsculas y minúsculas coincidan";
     return nullptr;
 
@@ -250,9 +250,9 @@ int Administracion(){
                     "¿Que desea hacer con la lista de áreas? "; cin>>opA;
 
                 if(opA==1){
-                    string nombreArea;
+                    char nombreArea[60];
                     int cantVentanillas;
-                    cout<<"Escriba el nombre del área: ";cin>>nombreArea;
+                    cout<<"Escriba el nombre del área: ";gets(nombreArea);
                     cout<<"¿Cuantas ventanillas puede tener el área?"; cin>>cantVentanillas;
                     listaAreas->append(crearArea(nombreArea, cantVentanillas));
 
@@ -289,8 +289,8 @@ int Administracion(){
                     //Agregar
                     if(opS==1){
                         string nombre;
-                        string nombreArea;
-                        cout<<"Escriba el nombre del servicio: "; cin>>nombre;
+                        char nombreArea[100];
+                        cout<<"Escriba el nombre del servicio: "; getline(cin, nombre);
                         if(checkServicio(nombre)){
                             Enter();
                             cout<<"Ya existe un servicio del mismo nombre"<<endl;
@@ -385,6 +385,5 @@ int main(){
 	}
 	cout<<"\nGracias por su vista"<<endl;
 	return 0;
-
 
 }
