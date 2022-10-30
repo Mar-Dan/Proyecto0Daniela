@@ -7,7 +7,6 @@
 #include "PriorityQueue.h"
 #include "Tiquete.h"
 #include "Ventana.h"
-//#include "Cliente.h"
 #include "Servicio.h"
 #include "Area.h"
 //#include "ListaVentanillas.h"
