@@ -23,9 +23,9 @@ class Servicio;
 class Area{
 protected:
     List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
-    int cantVentanillas;
+    int cantVentanillas=0;
     string nombre;
-    string codigo;
+    char codigo;
     int clientes=0;
     int contadorT=0;
 public:
@@ -50,6 +50,14 @@ public:
         this->nombre = nombre;
         this->clientes = clientes;
     }
+    Area(string name, int cVentanillas){
+        this->ventanillas = ventanillas;
+        this->nombre = name;
+        this->codigo = codigo;
+        this->contadorT = contadorT;
+        this->tiempoT = tiempoT;
+        this->cantVentanillas = cVentanillas;
+    }
     void setName(string n){
         nombre = n;
         setCodigo();
@@ -60,8 +68,12 @@ public:
     void setCodigo(){
         codigo = nombre.at(0);
     }
-    string getCodigo(){
+    char getCodigo(){
         return codigo;
+    }
+    string toStringCodigo(){
+        string codeString = to_string(codigo);
+        return codeString;
     }
     void setVentanillas(List<Ventana*> *v){
         ventanillas = v;

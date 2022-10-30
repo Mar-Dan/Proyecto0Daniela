@@ -126,20 +126,20 @@
 
 1666936236 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\mains.c
 
-1666990196 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
+1667115547 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdexcept>
 	<string>
+	<ios>
+	<limits>
 	"LinkedPriorityQueue.h"
 	"DLinkedList.h"
 	"PriorityQueue.h"
+	"Tiquete.h"
+	"Ventana.h"
 	"Servicio.h"
 	"Area.h"
-	"Ventana.h"
-	"Cliente.h"
-	"Tiquete.h"
-	"ListaVentanillas.h"
 	"Dictionary.h"
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedpriorityqueue.h
@@ -161,34 +161,31 @@
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\queue.h
 
-1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\tiquete.h
+1666997041 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\tiquete.h
 	<stdexcept>
 	<ctime>
-	<string>
-	"Ventana.h"
 	"Servicio.h"
+	"Ventana.h"
 
-1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\ventana.h
-	"Area.h"
+1666997041 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\ventana.h
+	"Tiquete.h"
 	"LinkedPriorityQueue.h"
-	"ListaTiquetes.h"
 	<conio.h>
 	<string>
 	<iostream>
 	<stdlib.h>
 
-1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
+1667087871 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
 	"Node.h"
 	"LinkedPriorityQueue.h"
 	"HeapPriorityQueue.h"
 	"LinkedList.h"
-	"Ventana.h"
-	"Servicio.h"
+	"Tiquete.h"
 	"ArrayList.h"
-	"ListaVentanillas.h"
 	<conio.h>
 	<string>
 	<iostream>
+	"Servicio.h"
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\heappriorityqueue.h
 	<stdexcept>
@@ -211,10 +208,11 @@
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\list.h
 
-1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\servicio.h
-	"iostream"
+1666997041 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\servicio.h
+	<iostream>
 	<string>
 	"Area.h"
+	"Tiquete.h"
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\arraylist.h
 	"List.h"
