@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <string>
-#include<ios>
-#include<limits>
+#include <ios>
+#include <limits>
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "Tiquete.h"
@@ -67,7 +67,7 @@ List<Tiquete*>* toArray(List<Area*>* listaAreas){
         listaAreas->next();
     }
     if (total < 1){
-        thro
+        throw runtime_error("No elements to make an ArrayList.");
     }
     arrTiquetes = new ArrayList<Tiquete*>(total);
 
@@ -193,7 +193,6 @@ void DefaultServicios(){
 
 }
 bool checkServicio(string nameService){
-    int p = listaServicios->getPos();
     for(listaServicios->goToStart();!listaServicios->atEnd();listaServicios->next()){
         Servicio *s = listaServicios->getElement();
         string nombreS = s->getNombre();
@@ -244,7 +243,7 @@ void menuPrintVentanas(){
     }
     bool selec = false;
     while(!selec){
-        try{
+        try {
             cout << "�rea a consultar: "; cin >> i;
             listaAreas->goToPos(i);
             local = listaAreas->getElement();
