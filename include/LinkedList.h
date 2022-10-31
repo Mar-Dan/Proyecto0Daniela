@@ -115,17 +115,14 @@ public:
     }
    bool contains(E elemento){
         current = head;
-
-        cout << "Elemento a buscar:" << elemento << endl;
         while (current->next != tail){
-            cout << current->next->element << endl;
             if (current->next->element == elemento){
                 return true;
             }else{
                 current = current->next;
             }
         }
-        return false;
+        return current->next->element == elemento;
     }
     void extends(List<E> *L){
         L->goToStart();

@@ -18,7 +18,7 @@
 using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
-List<Tiquete*> listaTiquetes = new LinkedPriorityQueue<*Tiquete>(2);
+//List<Tiquete*> listaTiquetes = new LinkedPriorityQueue<Tiquete*>(2);
 
 void Enter(){
     system("CLS");
@@ -50,9 +50,11 @@ Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
         }
     }
     if (!area->servicios->contains(servicio)) {
-        string mensaje;
-        cout << servicio << endl;
-        mensaje = "Area " + area->toStringCodigo() + "does not attend " + servicio->getNombre();
+        for(area->servicios->goToStart(); !area->servicios->atEnd(); area->servicios->next()){
+            cout << area->servicios->getElement()->getNombre() << ", ";
+        }
+        cout << endl << servicio->getNombre() << endl;
+        string mensaje = "Area " + area->getName() + " does not attend " + servicio->getNombre();
         throw runtime_error(mensaje);
     } else {
         tiqueteN = new Tiquete(prioridad, servicio, codigo);
@@ -121,18 +123,23 @@ Tiquete* atender(Ventana* ventana){
 
 void DefaultAreas(){
     listaAreas = new DLinkedList<Area*>();
+
     Area* cajas = new Area();
     cajas->setName("Cajas");
     cajas->setCantidadVentanillas(5);
+
     Area* servicioAlCLiente = new Area();
     servicioAlCLiente->setName("Servicio al cliente");
-    cajas->setCantidadVentanillas(3);
+    servicioAlCLiente->setCantidadVentanillas(3);
+
     Area* empresarial = new Area();
     empresarial->setName("Empresarial");
     empresarial->setCantidadVentanillas(2);
+
     Area* informacion = new Area();
     informacion->setName("Información");
     informacion->setCantidadVentanillas(1);
+
     listaAreas->append(cajas);
     listaAreas->append(servicioAlCLiente);
     listaAreas->append(empresarial);
