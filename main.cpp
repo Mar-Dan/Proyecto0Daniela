@@ -532,7 +532,7 @@ void Estadisticas(){
             listaServicios->goToStart();
             while(!listaServicios->atEnd()){
                 cout << "Servicio: " << listaServicios->getElement()->getNombre() << "\t Tiquetes dispensados: "
-                        << listaServicios->getElement()->getTiqDados() << endl;
+                        << listaServicios->getElement()->getContadorT() << endl;
                 listaServicios->next();
             }
             cout << "Ingrese cualquier número para continuar"; cin >> foo;
@@ -607,6 +607,17 @@ void runTestEmitirTiquetes(int nTiquetes){
 
 }
 
+void runTestAtenderTiquetes(int nTiquetes){
+    int areas = listaAreas->getSize();
+    Area* area;
+    for(int i = 0; i < nTiquetes; i++){
+            listaAreas->goToPos(generarNumero(areas));
+            area = listaAreas->getElement();
+            area->ventanillas->goToPos(generarNumero(area->ventanillas->getSize()));
+            atender(area->ventanillas->getElement());
+    }
+}
+
 int main(){
     int op = 0;
     DefaultAreas();
@@ -616,6 +627,7 @@ int main(){
     cout<<a->getCantidadVentanillas();
     DefaultServicios();
     runTestEmitirTiquetes(100);
+    runTestAtenderTiquetes(80);
 
     while(op!=6){
         Enter();
