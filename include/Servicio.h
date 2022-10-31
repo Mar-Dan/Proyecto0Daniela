@@ -21,6 +21,7 @@ class Servicio
         Servicio(string nombre, Area* area){
             this->nombre = nombre;
             this->area = area;
+            area->servicios->append(this);
             tiqDados = 0;
             contadorT = 0;
         }

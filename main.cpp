@@ -22,7 +22,33 @@ void Enter(){
     system("CLS");
 
 }
+<<<<<<< Updated upstream
 void VerEstadoDeColas(){cout<<"Estado colas";}
+=======
+void printListaServicios(){
+    Enter();
+    int p;
+    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
+        p = listaServicios->getPos();
+    else
+        p = 0;
+    listaServicios->goToStart();
+    cout<<"SERVICIOS"<<endl;
+    for(int i = 0; i< listaServicios->getSize(); i++){
+
+            Servicio *s = listaServicios->getElement();
+            Area* areaService = s->getArea();
+            cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
+            listaServicios->next();
+
+    }
+    cout<<"\n";
+    listaServicios->goToPos(p);
+}
+//****************************************************************************
+void VerEstadoDeColas(){cout<<"Estado colas";}
+//***********************************************************************
+>>>>>>> Stashed changes
 void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     int numT;
     string prefijo;
@@ -43,12 +69,13 @@ void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     if (!area->servicios->contains(servicio)) {
         string mensaje;
         cout << servicio << endl;
-        mensaje = "Area " + area->toStringCodigo() + "does not attend " + servicio->getNombre();
+        mensaje = "Area " + area->getCodigo() + "does not attend " + servicio->getNombre();
         throw runtime_error(mensaje);
     } else {
         area->getCodigo();
     }
 }
+
 
 List<Tiquete*>* toArray(List<Area*>* listaAreas){
     int total = 0;
@@ -204,26 +231,7 @@ void deleteServicio(int i){
     listaServicios->goToPos(origin);
     return;
 }
-void printListaServicios(){
-    Enter();
-    int p;
-    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
-        p = listaServicios->getPos();
-    else
-        p = 0;
-    listaServicios->goToStart();
-    cout<<"SERVICIOS"<<endl;
-    for(int i = 0; i< listaServicios->getSize(); i++){
 
-            Servicio *s = listaServicios->getElement();
-            Area* areaService = s->getArea();
-            cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
-            listaServicios->next();
-
-    }
-    cout<<"\n";
-    listaServicios->goToPos(p);
-}
 
 int Administracion(){
     Enter();
@@ -359,6 +367,52 @@ int Administracion(){
 string Estadisticas(){
     return "helloo mrs. clown";
 }
+void menuSolicitarTiquete(){
+    int e = listaServicios->getSize();
+    int op = 0;
+    Tiquete* nTiquete;
+    Servicio* servicioT;
+    printListaServicios();
+    cout << "Seleccione en cuál servicio desea que le atiendan: "; cin >> op;
+    if(op >= 0 && op < e){
+        listaServicios->goToPos(op);
+        cout << "¿Desea que le atiendan en " << listaServicios->getElement()->getNombre() << " ?" << endl << "(1/0): "; cin >> op;
+        if(op == 1){
+            cout << "¿Usted es cliente preferencial?" << endl << "(1/0): "; cin >> op;
+            if (op != 0 && op != 1){
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+                cin >> op;
+                menuSolicitarTiquete();
+            } else if(op == 1){
+                Area* areaT = listaServicios->getElement()->getArea();
+                servicioT = listaServicios->getElement();
+                nTiquete = SolicitarTiquete(areaT, servicioT, 0);
+            } else {
+            servicioT = listaServicios->getElement();
+            Area* areaT = servicioT->getArea();
+            nTiquete = SolicitarTiquete(areaT, servicioT, 1);
+            }
+        } else {
+            if (op == 0){
+                cout << "Ingrese 0 para continuar";
+            } else {
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+            }
+            cin >> op;
+            Enter();
+            menuSolicitarTiquete();
+        }
+        cout << "Tiquete solicitado exitosamente. El código de su tiquete es: " << nTiquete->getCodigo()
+                << ", y se le atenderá en el área " << nTiquete->getServicio()->getArea()->getName() << endl
+                    << "Ingrese cualquier número para continuar: "; cin >> op;
+        return;
+    } else {
+        cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+        cin >> op;
+        Enter();
+        menuSolicitarTiquete();
+    }
+}
 //-----------------------------------------Menú-------------------
 int main(){
     int op = 0;
@@ -381,8 +435,15 @@ int main(){
 		cout<<"Que desea realizar? "; cin>>op;
 		if(op ==1)
 			cout<<"VerEstadoDeCola();"<<endl;
+<<<<<<< Updated upstream
 		if(op==2)
 			cout<<"SolicitarTiquete();"<<endl;
+=======
+		if(op==2){
+			Enter();
+			menuSolicitarTiquete();
+        }
+>>>>>>> Stashed changes
 		if(op==3)
 			cout<<"Atender"<<endl;
 		if(op==4)

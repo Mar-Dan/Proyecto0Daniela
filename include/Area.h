@@ -6,7 +6,8 @@
 #include "LinkedList.h"
 #include "Tiquete.h"
 #include "ArrayList.h"
-//#include "ListaVentanillas.h"
+#include <locale.h>
+#include <windows.h>
 #include <conio.h>
 #include <string>
 #include <iostream>
@@ -25,14 +26,14 @@ protected:
     List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     int cantVentanillas=0;
     string nombre;
-    char codigo;
+    string codigo;
     int clientes;
     int contadorT=0;
 public:
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
     PriorityQueue<Tiquete*>* cola = new HeapPriorityQueue<Tiquete*>(100);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);
-    double tiempoT = 0;
+    double tiempoT;
     Area(){
         this->ventanillas = ventanillas;
         this->nombre=nombre;
@@ -68,13 +69,13 @@ public:
     void setCodigo(){
         codigo = nombre.at(0);
     }
-    char getCodigo(){
+    string getCodigo(){
         return codigo;
     }
-    string toStringCodigo(){
+    /*string toStringCodigo(){
         string codeString = to_string(codigo);
         return codeString;
-    }
+    }*/
     void setVentanillas(List<Ventana*> *v){
         ventanillas = v;
     }
@@ -106,9 +107,7 @@ public:
         ventanillas->goToPos(p);
 
     }
-    void atender(){
 
-    }
     void setContadorT(){
         this->contadorT = contadorT + 1;
     }
@@ -133,15 +132,16 @@ public:
                 else
                     return nullptr;
     }
+
+    double getTiempoPromedio(){
+        return tiempoT / tiquetesAtendidos->getSize();
+    }
+
     void toString(){
         cout<<getName();
         cout<<" ("<<getCodigo()<<")";
 
-        //cout<<"Clientes: "<<endl;
-        //clientes->print();
-
     }
-
 
 
 };
