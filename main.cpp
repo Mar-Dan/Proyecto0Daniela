@@ -18,11 +18,16 @@
 using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
+List<Tiquete*> listaTiquetes = new LinkedPriorityQueue<*Tiquete>(2);
 
 void Enter(){
     system("CLS");
 }
-void VerEstadoDeColas(){cout<<"Estado colas";}
+//----------------------- VER ESTADOS DE COLAS------------------------------
+void VerEstadoDeColas(){
+
+}
+
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     int numT;
     string prefijo;
