@@ -82,6 +82,9 @@ public:
     /*void getLastCliente(){
 
     }*/
+
+    int getTiquetesAtendidos(){return tiquetesAtendidos;}
+
     void print(){
         cout<<getCodigo()<<":"<<lastCliente;
 
