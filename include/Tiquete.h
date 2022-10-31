@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <ctime>
 
-
 #include "Servicio.h"
 #include "LinkedPriorityQueue.h"
 

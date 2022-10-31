@@ -1,15 +1,14 @@
 #ifndef AREA_H
 #define AREA_H
-#include "Node.h"
+#include <locale.h>
+#include <windows.h>
+#include <string>
+#include <iostream>
+
 #include "LinkedPriorityQueue.h"
-#include "HeapPriorityQueue.h"
 #include "LinkedList.h"
 #include "Tiquete.h"
 #include "ArrayList.h"
-//#include "ListaVentanillas.h"
-#include <conio.h>
-#include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -141,12 +140,9 @@ public:
                     return nullptr;
     }
     void toString(){
+        SetConsoleOutputCP( 65001 );
         cout<<getName();
         cout<<" ("<<getCodigo()<<")";
-
-        //cout<<"Clientes: "<<endl;
-        //clientes->print();
-
     }
 
 

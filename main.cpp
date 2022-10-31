@@ -4,14 +4,15 @@
 #include <string>
 #include <ios>
 #include <limits>
+#include <stdio.h>
+#include <locale.h>
+#include <windows.h>
 #include "LinkedPriorityQueue.h"
 #include "DLinkedList.h"
 #include "Tiquete.h"
 #include "Ventana.h"
-//#include "Cliente.h"
 #include "Servicio.h"
 #include "Area.h"
-#include "Dictionary.h"
 
 
 using namespace std;
@@ -22,7 +23,7 @@ void Enter(){
     system("CLS");
 }
 void VerEstadoDeColas(){cout<<"Estado colas";}
-void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
+Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     int numT;
     string prefijo;
     string codigo;
@@ -52,6 +53,7 @@ void SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
         tiqueteN = new Tiquete(prioridad, servicio, codigo);
         area->cola->insert(tiqueteN, prioridad);
     }
+    return tiqueteN;
 }
 
 List<Tiquete*>* toArray(List<Area*>* listaAreas){
@@ -124,7 +126,7 @@ void DefaultAreas(){
     empresarial->setName("Empresarial");
     empresarial->setCantidadVentanillas(2);
     Area* informacion = new Area();
-    informacion->setName("Informaci�n");
+    informacion->setName("Información");
     informacion->setCantidadVentanillas(1);
     listaAreas->append(cajas);
     listaAreas->append(servicioAlCLiente);
@@ -156,7 +158,7 @@ Area* getArea(string codeArea){
             return a;
     }
     cout<<("No existe un area con ese nombre")<<endl<<
-    "Asegurese que las may�sculas y min�sculas coincidan"<<endl;
+    "Asegurese que las mayúsculas y minúsculas coincidan"<<endl;
     return nullptr;
 
 }
@@ -182,12 +184,12 @@ Area* crearArea(string nombre, int cantVentanillas){
 void DefaultServicios(){
     listaServicios = new DLinkedList<Servicio*>();
     listaServicios->append(new Servicio("Retiro", getArea("Cajas")));
-    listaServicios->append(new Servicio("Dep�sito", getArea("Cajas")));
+    listaServicios->append(new Servicio("Depósito", getArea("Cajas")));
     listaServicios->append(new Servicio("Pagar recibo", getArea("Cajas")));
     listaServicios->append(new Servicio("Pagar marchamo", getArea("Cajas")));
     listaServicios->append(new Servicio("Cambiar cheque", getArea("Cajas")));
-    listaServicios->append(new Servicio("Retirar tarjeta", getArea("Informaci�n")));
-    listaServicios->append(new Servicio("Consulta", getArea("Informaci�n")));
+    listaServicios->append(new Servicio("Retirar tarjeta", getArea("Información")));
+    listaServicios->append(new Servicio("Consulta", getArea("Información")));
     listaServicios->append(new Servicio("Inversiones", getArea("Empresarial")));
     listaServicios->append(new Servicio("Abrir cuenta", getArea("Servicio al cliente")));
 
@@ -397,23 +399,22 @@ int Administracion(){
 void Estadisticas(){
     int op = 0;
     while(op!=6){
-        List<Tiquete*>* tiquetesTotal = toArray(listaAreas);
         Enter();
-        cout<<"Men� de estad�sticas"<<endl;
-        cout<<"1. Tiempo de espera promedio por �reas"<<endl<<
-        "2. Total de tiquetes dispensados por �rea"<<endl<<
+        cout<<"Menú de estadísticas"<<endl;
+        cout<<"1. Tiempo de espera promedio por áreas"<<endl<<
+        "2. Total de tiquetes dispensados por área"<<endl<<
         "3. Total de tiquetes atendidos por ventanilla"<<endl<<
         "4. Total de tiquetes dispensados por servicio"<<endl<<
         "5. Total de tiquetes preferenciales dispensados en todo el sistema"<<endl<<
         "6. Salir"<<endl;
 
-        cout<<"Que desea realizar? "; cin>>op;
+        cout<<"Qué desea realizar? "; cin>>op;
         if(op ==1){
             listaAreas->goToStart();
             Area* local;
             while(!listaAreas->atEnd()){
                 local = listaAreas->getElement();
-                cout << "�rea: " << local->getCodigo() << "\t Tiempo de espera promedio: " << local->getTiempoPromedio() << endl;
+                cout << "Área: " << local->getCodigo() << "\t Tiempo de espera promedio: " << local->getTiempoPromedio() << endl;
                 listaAreas->next();
             }
         }
@@ -422,7 +423,7 @@ void Estadisticas(){
             Area* local;
             while(!listaAreas->atEnd()){
                 local = listaAreas->getElement();
-                cout << "�rea: " << local->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
+                cout << "Área: " << local->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
                 listaAreas->next();
             }
         }
@@ -432,15 +433,64 @@ void Estadisticas(){
         else if(op==4){
             listaServicios->goToStart();
             while(!listaServicios->atEnd()){
-                cout << "Servicio: " << listaServicios->getElement()->getNombre() << "\t Tiquetes dispensados: " << listaServicios->getElement()->getTiqDados() << endl;
+                cout << "Servicio: " << listaServicios->getElement()->getNombre() << "\t Tiquetes dispensados: "
+                        << listaServicios->getElement()->getTiqDados() << endl;
                 listaServicios->next();
             }
         }
-        else if(op==5)
-            cout<<"Estadisticas"<<endl;
+        else if(op==5){
+            List<Tiquete*>* tList = toArray(listaAreas);
+            cout<<"Estadísticas"<<endl;
+            cout << "Total de tiquetes preferenciales dispensados: " << getTiqPref(tList) << endl;
+        }
         else if(op>6 || op<=0)
-            cout<<"Opcion no v�lida"<<endl;
+            cout<<"Opcion no válida"<<endl;
 
+    }
+}
+void menuSolicitarTiquete(){
+    int e = listaServicios->getSize();
+    int op = 0;
+    Tiquete* nTiquete;
+    printListaServicios();
+    cout << "Seleccione en cuál servicio desea que le atiendan: "; cin >> op;
+    if(op >= 0 && op < e){
+        listaServicios->goToPos(op);
+        cout << "¿Desea que le atiendan en " << listaServicios->getElement()->getNombre() << " ?" << endl << "(1/0): "; cin >> op;
+        if(op == 1){
+            cout << "¿Usted es cliente preferencial?" << endl << "(1/0): "; cin >> op;
+            if (op != 0 && op != 1){
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+                cin >> op;
+                menuSolicitarTiquete();
+            } else if(op == 1){
+                Area* areaT = listaServicios->getElement()->getArea();
+                Servicio* servicioT = listaServicios->getElement();
+                nTiquete = SolicitarTiquete(areaT, servicioT, 0);
+            } else {
+            Area* areaT = listaServicios->getElement()->getArea();
+            Servicio* servicioT = listaServicios->getElement();
+            nTiquete = SolicitarTiquete(areaT, servicioT, 1);
+            }
+        } else {
+            if (op == 0){
+                cout << "Ingrese 0 para continuar";
+            } else {
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+            }
+            cin >> op;
+            Enter();
+            menuSolicitarTiquete();
+        }
+        cout << "Tiquete solicitado exitosamente. El código de su tiquete es: " << nTiquete->getCodigo()
+                << ", y se le atenderá en el área " << nTiquete->getServicio()->getArea()->getName() << endl
+                    << "Ingrese cualquier número para continuar: "; cin >> op;
+        return;
+    } else {
+        cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+        cin >> op;
+        Enter();
+        menuSolicitarTiquete();
     }
 }
 //-----------------------------------------Men�-------------------
@@ -452,21 +502,23 @@ int main(){
     a->toString();
     cout<<a->getCantidadVentanillas();
     DefaultServicios();
+
     while(op!=6){
         Enter();
         cout<<"Bienvenid@"<<endl;
         cout<<"1. Ver estados de colas"<<endl<<
         "2. Solicitar tiquete"<<endl<<
         "3. Atender"<<endl<<
-        "4. Administraci�n"<<endl<<
-        "5. Estad�sticas"<<endl<<
+        "4. Administración"<<endl<<
+        "5. Estadísticas"<<endl<<
         "6. Salir"<<endl;
 
-		cout<<"Que desea realizar? "; cin>>op;
+		cout<<"Qué desea realizar? "; cin>>op;
 		if(op ==1)
 			cout<<"VerEstadoDeCola();"<<endl;
 		if(op==2)
-			cout<<"SolicitarTiquete();"<<endl;
+            Enter();
+			menuSolicitarTiquete();
 		if(op==3)
 			cout<<"Atender"<<endl;
 		if(op==4)
@@ -474,10 +526,10 @@ int main(){
 		if(op==5)
 			Estadisticas();
 		if(op>6 || op<=0)
-			cout<<"Opcion no v�lida"<<endl;
+			cout<<"Opción no válida"<<endl;
 
 	}
-	cout<<"\nGracias por su vista"<<endl;
+	cout<<"\nGracias por su visita"<<endl;
 	return 0;
 
 }
