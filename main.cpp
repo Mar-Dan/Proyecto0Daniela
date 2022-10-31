@@ -467,7 +467,7 @@ void Estadisticas(){
         "5. Total de tiquetes preferenciales dispensados en todo el sistema"<<endl<<
         "6. Salir"<<endl;
 
-        cout<<"Qué desea realizar? "; cin>>op;
+        cout<<"¿Qué desea realizar? "; cin>>op;
         if(op ==1){
             listaAreas->goToStart();
             Area* local;
