@@ -126,21 +126,22 @@
 
 1666936236 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\mains.c
 
-1667115547 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
+1667257622 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdexcept>
 	<string>
 	<ios>
 	<limits>
+	<stdio.h>
+	<locale.h>
+	<windows.h>
 	"LinkedPriorityQueue.h"
 	"DLinkedList.h"
-	"PriorityQueue.h"
 	"Tiquete.h"
 	"Ventana.h"
 	"Servicio.h"
 	"Area.h"
-	"Dictionary.h"
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedpriorityqueue.h
 	<iostream>
@@ -161,7 +162,7 @@
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\queue.h
 
-1666997041 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\tiquete.h
+1667257425 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\tiquete.h
 	<stdexcept>
 	<ctime>
 	"Servicio.h"
@@ -175,16 +176,16 @@
 	<iostream>
 	<stdlib.h>
 
-1667087871 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
-	"Node.h"
+1667258356 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
+	<locale.h>
+	<windows.h>
+	<string>
+	<iostream>
+	"PriorityQueue.h"
 	"LinkedPriorityQueue.h"
-	"HeapPriorityQueue.h"
 	"LinkedList.h"
 	"Tiquete.h"
 	"ArrayList.h"
-	<conio.h>
-	<string>
-	<iostream>
 	"Servicio.h"
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\heappriorityqueue.h
@@ -200,7 +201,7 @@
 	<stdexcept>
 	<iostream>
 
-1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedlist.h
+1667245757 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\linkedlist.h
 	"List.h"
 	"Node.h"
 	<stdexcept>
@@ -208,7 +209,7 @@
 
 1666936236 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\list.h
 
-1666997041 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\servicio.h
+1667248420 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\servicio.h
 	<iostream>
 	<string>
 	"Area.h"

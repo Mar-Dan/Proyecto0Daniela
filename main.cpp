@@ -20,15 +20,53 @@ List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 //List<Tiquete*> listaTiquetes = new LinkedPriorityQueue<Tiquete*>(2);
 
-int generarNumero(int tope){
-    int r = rand() % tope;
-    return r;
-}
-
 void Enter(){
     system("CLS");
 }
 //----------------------- VER ESTADOS DE COLAS------------------------------
+//void printListaTiquetes(List<Tiquete*> *arrayTiquete){
+//    int p = arrayTiquete->getPos();
+//    cout<<"[";
+//    for(arrayTiquete->goToStart(); !arrayTiquete->atEnd(); arrayTiquete->next()){
+//        Tiquete* t = arrayTiquete->getElement();
+//        t->toString();
+//    }
+//    cout<<"]"<<endl;
+//    arrayTiquete->goToPos(p);
+//}
+void printCola(PriorityQueue<Tiquete*>* C){
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
+
+    bool enPrioridad = true;
+    Tiquete* tiqLocal;
+    cout << "Cola de prioridad: [ ";
+    while(!C->isEmpty()){
+        tiqLocal = C->removeMin();
+        if(enPrioridad){
+            if(tiqLocal->getPrioridad() != 0){
+                enPrioridad = false;
+                cout << " ]\nCola ordinaria: [ ";
+            }
+        }
+        cout << tiqLocal->getCodigo() << ", ";
+        cola->insert(tiqLocal, tiqLocal->getPrioridad());
+    }
+    cout << " ]" << endl;
+    while(!cola->isEmpty()){
+        tiqLocal = cola->removeMin();
+        C->insert(tiqLocal, tiqLocal->getPrioridad());
+    }
+}
+void VerEstadoDeColas(){
+    string foo;
+    cout << "Estado de colas:" << endl;
+    for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
+        cout << "Área:\t" << listaAreas->getElement()->getName() << "\t\tCantidad de ventanillas: " << listaAreas->getElement()->getCantidadVentanillas() << endl;
+        printCola(listaAreas->getElement()->cola);
+        cout << endl << endl;
+    }
+    cout << "Ingrese cualquier número para continuar"; cin >> foo;
+}
 
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     int numT;
@@ -60,6 +98,7 @@ Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
         throw runtime_error(mensaje);
     } else {
         tiqueteN = new Tiquete(prioridad, servicio, codigo);
+        tiqueteN->setCodigo(codigo);
         area->cola->insert(tiqueteN, prioridad);
     }
     return tiqueteN;
@@ -121,7 +160,7 @@ Tiquete* atender(Ventana* ventana){
         return tiqueteAtendido;
 }
 
-//***********************************ADMINISTRACIÓN******************************************
+//***********************************ADMINISTRACION******************************************
 
 Area* getArea(string codeArea){
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -238,40 +277,6 @@ void printListaServicios(){
     listaServicios->goToPos(p);
 }
 
-void printCola(PriorityQueue<Tiquete*>* C){
-    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
-
-    bool enPrioridad = true;
-    Tiquete* tiqLocal;
-    cout << "Cola de prioridad: [ ";
-    while(!C->isEmpty()){
-        tiqLocal = C->removeMin();
-        if(enPrioridad){
-            if(tiqLocal->getPrioridad() != 0){
-                enPrioridad = false;
-                cout << " ]\nCola ordinaria: [ ";
-            }
-        }
-        cout << tiqLocal->getCodigo() << ", ";
-        cola->insert(tiqLocal, tiqLocal->getPrioridad());
-    }
-    cout << " ]" << endl;
-    while(!cola->isEmpty()){
-        tiqLocal = cola->removeMin();
-        C->insert(tiqLocal, tiqLocal->getPrioridad());
-    }
-}
-
-void VerEstadoDeColas(){
-    string foo;
-    cout << "Estado de colas:" << endl;
-    for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
-        cout << "Área:\t" << listaAreas->getElement()->getName() << "\t\tCantidad de ventanillas: " << listaAreas->getElement()->getCantidadVentanillas() << endl;
-        printCola(listaAreas->getElement()->cola);
-        cout << endl << endl;
-    }
-    cout << "Ingrese cualquier número para continuar"; cin >> foo;
-}
 void menuPrintVentanas(){
     Enter();
     listaAreas->goToStart();
@@ -290,18 +295,18 @@ void menuPrintVentanas(){
             listaAreas->goToPos(i);
             local = listaAreas->getElement();
             selec = true;
-        } catch(runtime_error &) {
+        } catch(runtime_error e) {
             cout << "Selección inválida >:(" << endl << endl;
         }
     }
     Enter();
     local->getVentanillas()->goToStart();
     while(!local->getVentanillas()->atEnd()){
-        cout << "Ventanilla: " << local->getVentanillas()->getElement()->getCodigo() << "\tTiquetes atendidos: " << local->getVentanillas()->getElement()->getTiquetesAtendidos() << endl;
+        cout << "Ventanilla: " << local->getVentanillas()->getElement()->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
         local->getVentanillas()->next();
     }
     string d;
-    cout << "Ingrese cualquier número para regresar al menú."; cin >> d;
+    cout << "Presione enter para regresar al men�."; cin >> d;
     return;
 }
 void menuAtender(){
@@ -322,7 +327,7 @@ void menuAtender(){
             local = listaAreas->getElement();
             selec = true;
             i = 0;
-        } catch(runtime_error &) {
+        } catch(runtime_error e) {
             cout << "Selección inválida >:(" << endl << endl;
         }
     }
@@ -343,7 +348,7 @@ void menuAtender(){
             local->ventanillas->goToPos(i);
             ventanaLocal= local->ventanillas->getElement();
             selec = true;
-        } catch(runtime_error &) {
+        } catch(runtime_error e) {
             cout << "Selección inválida >:(" << endl << endl;
         }
     }
@@ -484,7 +489,7 @@ int Administracion(){
 
         }
         if(op<=0 || op>3){
-            cout<<"Opci�n no v�lida"<<endl;
+            cout<<"Opción no válida"<<endl;
         }
 
     }
@@ -503,7 +508,7 @@ void Estadisticas(){
         "5. Total de tiquetes preferenciales dispensados en todo el sistema"<<endl<<
         "6. Salir"<<endl;
 
-        cout<<"¿Qué desea realizar? "; cin>>op;
+        cout<<"Qué desea realizar? "; cin>>op;
         if(op ==1){
             listaAreas->goToStart();
             Area* local;
@@ -594,19 +599,6 @@ void menuSolicitarTiquete(){
     }
 }
 //-----------------------------------------Menú-------------------
-
-void runTestEmitirTiquetes(int nTiquetes){
-    int areas = listaAreas->getSize();
-    Area* area;
-    for(int i = 0; i < nTiquetes; i++){
-            listaAreas->goToPos(generarNumero(areas));
-            area = listaAreas->getElement();
-            area->servicios->goToPos(generarNumero(area->servicios->getSize()));
-            SolicitarTiquete(area, area->servicios->getElement(), generarNumero(2));
-    }
-
-}
-
 int main(){
     int op = 0;
     DefaultAreas();
@@ -615,7 +607,6 @@ int main(){
     a->toString();
     cout<<a->getCantidadVentanillas();
     DefaultServicios();
-    runTestEmitirTiquetes(100);
 
     while(op!=6){
         Enter();

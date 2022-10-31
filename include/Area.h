@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <string>
 #include <iostream>
-
+#include "PriorityQueue.h"
 #include "LinkedPriorityQueue.h"
 #include "LinkedList.h"
 #include "Tiquete.h"
@@ -29,7 +29,7 @@ protected:
 public:
     List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
-    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>*(2);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);
     double tiempoT = 0;
     Area(){
