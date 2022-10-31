@@ -8,6 +8,7 @@
 #include <locale.h>
 #include <windows.h>
 #include "LinkedPriorityQueue.h"
+#include "PriorityQueue.h"
 #include "DLinkedList.h"
 #include "Tiquete.h"
 #include "Ventana.h"
@@ -29,24 +30,10 @@ void Enter(){
     system("CLS");
 }
 
-void printListaServicios(){
-    Enter();
-    int p;
-    if(listaServicios->getPos() > 0 && listaServicios->getPos() < listaServicios->getSize())
-        p = listaServicios->getPos();
-    else
-        p = 0;
-    listaServicios->goToStart();
-    cout<<"SERVICIOS"<<endl;
-    for(int i = 0; i< listaServicios->getSize(); i++){
-
-            Servicio *s = listaServicios->getElement();
-            Area* areaService = s->getArea();
-            cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
-            listaServicios->next();
-
-    bool enPrioridad = true;
+void printListaServicios(PriorityQueue<Tiquete*>* C){
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
     Tiquete* tiqLocal;
+    bool enPrioridad = true;
     cout << "Cola de prioridad: [ ";
     while(!C->isEmpty()){
         tiqLocal = C->removeMin();
@@ -272,6 +259,11 @@ void printListaServicios(){
             Area* areaService = s->getArea();
             cout<<i<<". "<<s->toString()<<" ["<<areaService->getCodigo()<<"]"<<endl;
             listaServicios->next();
+
+    }
+    cout<<"\n";
+    listaServicios->goToPos(p);
+}
 
 void printCola(PriorityQueue<Tiquete*>* C){
     PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
