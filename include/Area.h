@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <string>
 #include <iostream>
-
+#include "PriorityQueue.h"
 #include "LinkedPriorityQueue.h"
 #include "LinkedList.h"
 #include "Tiquete.h"
@@ -31,7 +31,7 @@ public:
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
     PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);
-    double tiempoT;
+    double tiempoT = 0;
     Area(){
         this->ventanillas = ventanillas;
         this->nombre=nombre;
@@ -67,13 +67,13 @@ public:
     void setCodigo(){
         codigo = nombre.at(0);
     }
-    string getCodigo(){
+    char getCodigo(){
         return codigo;
     }
-    /*string toStringCodigo(){
+    string toStringCodigo(){
         string codeString = to_string(codigo);
         return codeString;
-    }*/
+    }
     void setVentanillas(List<Ventana*> *v){
         ventanillas = v;
     }
@@ -139,16 +139,12 @@ public:
                 else
                     return nullptr;
     }
-
-    double getTiempoPromedio(){
-        return tiempoT / tiquetesAtendidos->getSize();
-    }
-
     void toString(){
         SetConsoleOutputCP( 65001 );
         cout<<getName();
         cout<<" ("<<getCodigo()<<")";
     }
+
 
 
 };
