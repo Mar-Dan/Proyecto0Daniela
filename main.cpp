@@ -8,6 +8,7 @@
 #include <locale.h>
 #include <windows.h>
 #include "LinkedPriorityQueue.h"
+#include "PriorityQueue.h"
 #include "DLinkedList.h"
 #include "Tiquete.h"
 #include "Ventana.h"
@@ -28,6 +29,32 @@ int generarNumero(int tope){
 void Enter(){
     system("CLS");
 }
+
+void printListaServicios(PriorityQueue<Tiquete*>* C){
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
+    Tiquete* tiqLocal;
+    bool enPrioridad = true;
+    cout << "Cola de prioridad: [ ";
+    while(!C->isEmpty()){
+        tiqLocal = C->removeMin();
+        if(enPrioridad){
+            if(tiqLocal->getPrioridad() != 0){
+                enPrioridad = false;
+                cout << " ]\nCola ordinaria: [ ";
+            }
+        }
+        cout << tiqLocal->getCodigo() << ", ";
+        cola->insert(tiqLocal, tiqLocal->getPrioridad());
+    }
+    cout << " ]" << endl;
+    while(!cola->isEmpty()){
+        tiqLocal = cola->removeMin();
+        C->insert(tiqLocal, tiqLocal->getPrioridad());
+    }
+}
+//****************************************************************************
+//***********************************************************************
+
 //----------------------- VER ESTADOS DE COLAS------------------------------
 
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
@@ -484,7 +511,7 @@ int Administracion(){
 
         }
         if(op<=0 || op>3){
-            cout<<"Opci�n no v�lida"<<endl;
+            cout<<"Opción no válida"<<endl;
         }
 
     }
@@ -503,7 +530,7 @@ void Estadisticas(){
         "5. Total de tiquetes preferenciales dispensados en todo el sistema"<<endl<<
         "6. Salir"<<endl;
 
-        cout<<"Qué desea realizar? "; cin>>op;
+        cout<<"¿Qué desea realizar? "; cin>>op;
         if(op ==1){
             listaAreas->goToStart();
             Area* local;

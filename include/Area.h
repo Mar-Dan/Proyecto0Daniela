@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <string>
 #include <iostream>
-
+#include "PriorityQueue.h"
 #include "LinkedPriorityQueue.h"
 #include "LinkedList.h"
 #include "Tiquete.h"
