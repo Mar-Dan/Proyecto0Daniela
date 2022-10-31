@@ -1,16 +1,14 @@
 #ifndef AREA_H
 #define AREA_H
-#include "Node.h"
+#include <locale.h>
+#include <windows.h>
+#include <string>
+#include <iostream>
+
 #include "LinkedPriorityQueue.h"
-#include "HeapPriorityQueue.h"
 #include "LinkedList.h"
 #include "Tiquete.h"
 #include "ArrayList.h"
-#include <locale.h>
-#include <windows.h>
-#include <conio.h>
-#include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -23,15 +21,15 @@ class Servicio;
 
 class Area{
 protected:
-    List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     int cantVentanillas=0;
     string nombre;
-    string codigo;
-    int clientes;
+    char codigo;
+    int clientes=0;
     int contadorT=0;
 public:
+    List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
-    PriorityQueue<Tiquete*>* cola = new HeapPriorityQueue<Tiquete*>(100);
+    PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);
     double tiempoT;
     Area(){
@@ -107,9 +105,14 @@ public:
         ventanillas->goToPos(p);
 
     }
-
+    int getClientes(){
+        return clientes;
+    }
+    void addClientes(){
+        clientes++;
+    }
     void setContadorT(){
-        this->contadorT = contadorT + 1;
+        contadorT++;
     }
     int getContadorT(){
         return contadorT;
@@ -120,6 +123,10 @@ public:
     double getTiempoT(){
         return tiempoT;
     }
+    double getTiempoPromedio(){
+        return tiempoT / tiquetesAtendidos->getSize();
+    }
+
     List<Servicio*>* getServicios(){
         return servicios;
     }
@@ -138,9 +145,9 @@ public:
     }
 
     void toString(){
+        SetConsoleOutputCP( 65001 );
         cout<<getName();
         cout<<" ("<<getCodigo()<<")";
-
     }
 
 

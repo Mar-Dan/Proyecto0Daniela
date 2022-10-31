@@ -1,13 +1,12 @@
 #ifndef VENTANA_H
 #define VENTANA_H
 
-
-#include "Tiquete.h"
-#include "LinkedPriorityQueue.h"
-#include <conio.h>
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+
+#include "Tiquete.h"
+#include "LinkedPriorityQueue.h"
 
 using namespace std;
 
@@ -83,6 +82,9 @@ public:
     /*void getLastCliente(){
 
     }*/
+
+    int getTiquetesAtendidos(){return tiquetesAtendidos;}
+
     void print(){
         cout<<getCodigo()<<":"<<lastCliente;
 

@@ -2,7 +2,7 @@
 #define SERVICIO_H
 
 #include <iostream>
-#include<string>
+#include <string>
 #include "Area.h"
 using namespace std;
 class Area;
