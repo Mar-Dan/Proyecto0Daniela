@@ -1,6 +1,5 @@
 #ifndef SERVICIO_H
 #define SERVICIO_H
-
 #include <iostream>
 #include<string>
 #include "Area.h"
@@ -55,7 +54,7 @@ class Servicio
         }
 
         string toString(){
-            //string aCode = area->getCodigo();
+
             return getNombre();
         }
 };

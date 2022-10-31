@@ -38,10 +38,13 @@ class Tiquete
         void atenderTiquete(Ventana* ventana){
             hSalida = clock();
             espera = ((double)hSalida - (double)hEntrada);
-            this->servicio->addContadorT();
             this->espera = espera / CLOCKS_PER_SEC;
+            this->servicio->addContadorT();
             this->ventanilla = ventana;
 
+        }
+        void setCodigo(string code){
+            codigo = code;
         }
 
         void toString(){
