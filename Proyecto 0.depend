@@ -126,11 +126,13 @@
 
 1666936236 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\mains.c
 
-1667031146 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
+1667115547 source:c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdexcept>
 	<string>
+	<ios>
+	<limits>
 	"LinkedPriorityQueue.h"
 	"DLinkedList.h"
 	"PriorityQueue.h"
@@ -173,7 +175,7 @@
 	<iostream>
 	<stdlib.h>
 
-1667030924 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
+1667087871 c:\users\mdcha\onedrive\documentos\tec\semestre 2\estructurasdedatos\proyecto 0\proyecto0daniela\include\area.h
 	"Node.h"
 	"LinkedPriorityQueue.h"
 	"HeapPriorityQueue.h"

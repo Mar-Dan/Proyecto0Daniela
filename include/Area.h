@@ -25,7 +25,7 @@ protected:
     List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     int cantVentanillas=0;
     string nombre;
-    string codigo;
+    char codigo;
     int clientes;
     int contadorT=0;
 public:
@@ -68,8 +68,12 @@ public:
     void setCodigo(){
         codigo = nombre.at(0);
     }
-    string getCodigo(){
+    char getCodigo(){
         return codigo;
+    }
+    string toStringCodigo(){
+        string codeString = to_string(codigo);
+        return codeString;
     }
     void setVentanillas(List<Ventana*> *v){
         ventanillas = v;
