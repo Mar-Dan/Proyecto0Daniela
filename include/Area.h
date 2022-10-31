@@ -21,13 +21,13 @@ class Servicio;
 
 class Area{
 protected:
-    List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     int cantVentanillas=0;
     string nombre;
     char codigo;
     int clientes=0;
     int contadorT=0;
 public:
+    List<Ventana*> *ventanillas = new LinkedList<Ventana*>();
     List<Servicio*> *servicios = new LinkedList<Servicio*>();
     PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
     List<Tiquete*> *tiquetesAtendidos = new ArrayList<Tiquete*>(100);

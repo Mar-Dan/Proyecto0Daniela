@@ -243,27 +243,28 @@
 
 1666925251 source:c:\users\personal\documents\github\proyecto0daniela\mains.c
 
-1667163460 source:c:\users\personal\documents\github\proyecto0daniela\main.cpp
+1667203743 source:c:\users\personal\documents\github\proyecto0daniela\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdexcept>
 	<string>
 	<ios>
 	<limits>
+	<stdio.h>
+	<locale.h>
+	<windows.h>
 	"LinkedPriorityQueue.h"
 	"DLinkedList.h"
 	"Tiquete.h"
 	"Ventana.h"
 	"Servicio.h"
 	"Area.h"
-	"Dictionary.h"
 
-1666925251 c:\users\personal\documents\github\proyecto0daniela\include\linkedpriorityqueue.h
+1667163921 c:\users\personal\documents\github\proyecto0daniela\include\linkedpriorityqueue.h
 	<iostream>
 	<stdexcept>
 	"PriorityQueue.h"
 	"LinkedQueue.h"
-	"Tiquete.h"
 
 1666925251 c:\users\personal\documents\github\proyecto0daniela\include\priorityqueue.h
 
@@ -277,28 +278,28 @@
 
 1666925251 c:\users\personal\documents\github\proyecto0daniela\include\queue.h
 
-1666996726 c:\users\personal\documents\github\proyecto0daniela\include\tiquete.h
+1667191184 c:\users\personal\documents\github\proyecto0daniela\include\tiquete.h
 	<stdexcept>
 	<ctime>
 	"Servicio.h"
+	"LinkedPriorityQueue.h"
 	"Ventana.h"
 
-1666996726 c:\users\personal\documents\github\proyecto0daniela\include\servicio.h
+1667193556 c:\users\personal\documents\github\proyecto0daniela\include\servicio.h
 	<iostream>
 	<string>
 	"Area.h"
 	"Tiquete.h"
 
-1667163409 c:\users\personal\documents\github\proyecto0daniela\include\area.h
-	"Node.h"
+1667202134 c:\users\personal\documents\github\proyecto0daniela\include\area.h
+	<locale.h>
+	<windows.h>
+	<string>
+	<iostream>
 	"LinkedPriorityQueue.h"
-	"HeapPriorityQueue.h"
 	"LinkedList.h"
 	"Tiquete.h"
 	"ArrayList.h"
-	<conio.h>
-	<string>
-	<iostream>
 	"Servicio.h"
 
 1666925251 c:\users\personal\documents\github\proyecto0daniela\include\heappriorityqueue.h
@@ -314,7 +315,7 @@
 	<stdexcept>
 	<iostream>
 
-1666925251 c:\users\personal\documents\github\proyecto0daniela\include\linkedlist.h
+1667200614 c:\users\personal\documents\github\proyecto0daniela\include\linkedlist.h
 	"List.h"
 	"Node.h"
 	<stdexcept>
@@ -328,15 +329,14 @@
 	<iostream>
 	"Tiquete.h"
 
-1666996726 c:\users\personal\documents\github\proyecto0daniela\include\ventana.h
-	"Tiquete.h"
-	"LinkedPriorityQueue.h"
-	<conio.h>
+1667191184 c:\users\personal\documents\github\proyecto0daniela\include\ventana.h
 	<string>
 	<iostream>
 	<stdlib.h>
+	"Tiquete.h"
+	"LinkedPriorityQueue.h"
 
-1666925251 c:\users\personal\documents\github\proyecto0daniela\include\dlinkedlist.h
+1667193064 c:\users\personal\documents\github\proyecto0daniela\include\dlinkedlist.h
 	"List.h"
 	"DNode.h"
 	<stdexcept>
