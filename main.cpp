@@ -24,8 +24,18 @@ void Enter(){
     system("CLS");
 }
 //----------------------- VER ESTADOS DE COLAS------------------------------
-void VerEstadoDeColas(){
 
+void VerEstadoDeColas(){
+    string foo;
+    cout <<
+    "Estado de colas:" << endl;
+    for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
+        cout << "Área: " << listaAreas->getElement()->getName() << "\tCantidad de ventanillas: " << listaAreas->getElement()->getCantidadVentanillas() << endl;
+        cout << "Cola de espera:" << endl;
+        // Ya esto funciona, solo hace falta agregarle una función que imprima los tiquetes
+        cout << endl << endl;
+    }
+    cout << "Ingrese cualquier número para continuar"; cin >> foo;
 }
 
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
@@ -549,7 +559,7 @@ void menuSolicitarTiquete(){
         cout << "Tiquete solicitado exitosamente. El código de su tiquete es: " << nTiquete->getCodigo()
                 << ", y se le atenderá en el área " << nTiquete->getServicio()->getArea()->getName() << endl
                     << "Ingrese cualquier número para continuar: "; cin >> op;
-        return;
+        op = 0;
     } else {
         cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
         cin >> op;
@@ -557,7 +567,7 @@ void menuSolicitarTiquete(){
         menuSolicitarTiquete();
     }
 }
-//-----------------------------------------Men�-------------------
+//-----------------------------------------Menú-------------------
 int main(){
     int op = 0;
     DefaultAreas();
@@ -579,7 +589,7 @@ int main(){
 
 		cout<<"Qué desea realizar? "; cin>>op;
 		if(op ==1)
-			cout<<"VerEstadoDeCola();"<<endl;
+			VerEstadoDeColas();
 		if(op==2){
             Enter();
 			menuSolicitarTiquete();
