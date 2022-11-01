@@ -39,6 +39,21 @@ int generarNumero(int tope){
     return r;
 }
 
+int readNumber(string error_message) {
+    //Método de Saurabh Dhage, obtenido de su respuesta en StackOverflow
+//https://stackoverflow.com/questions/69735621/the-best-way-to-capture-user-input-int-with-error-handling-loop#:~:text=0-,Reading,-from%20a%20stream
+
+    int result;
+
+    while (!(cin >> result)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << error_message << std::endl;
+    }
+
+    return result;
+}
+
 void Enter(){
     system("CLS");
 }
@@ -472,11 +487,7 @@ int Administracion(){
                     "5. Regresar"<<endl;
 
                     cout<<"¿Qué desea hacer con la lista de servicios? ";
-                    try{
-                        cin>>opS;
-                    } catch (runtime_error&){
-                        opS = -1;
-                    }
+                    opS = readNumber("Opción no válida");
                     //Agregar
                     if(opS==1){
                         string nombre;
@@ -558,11 +569,7 @@ void Estadisticas(){
         "6. Salir"<<endl;
 
         cout<<"¿Qué desea realizar? ";
-        try{
-            cin>>op;
-        } catch (runtime_error&){
-            op = -1;
-        }
+        op = readNumber("Opción no válida");
         if(op ==1){
             listaAreas->goToStart();
             Area* local;
@@ -617,11 +624,7 @@ void menuSolicitarTiquete(){
     Tiquete* nTiquete;
     printListaServicios();
     cout << "Seleccione en cuál servicio desea que le atiendan: ";
-    try{
-        cin>>op;
-    } catch (runtime_error&){
-        op = -1;
-    }
+    op = readNumber("Opción no válida");
     if(op >= 0 && op < e){
         listaServicios->goToPos(op);
         cout << "¿Desea que le atiendan en " << listaServicios->getElement()->getNombre()
@@ -631,11 +634,7 @@ void menuSolicitarTiquete(){
             if (op != 0 && op != 1){
                 cout << "Valor ingresado inválido. Realice el proceso nuevamente."
                 << endl << endl << "Ingrese 0 para continuar ";
-                try{
-                    cin>>op;
-                } catch (runtime_error&){
-                    op = -1;
-                }
+                op = readNumber("Opción no válida");
                 menuSolicitarTiquete();
             } else if(op == 1){
                 Area* areaT = listaServicios->getElement()->getArea();
@@ -653,11 +652,7 @@ void menuSolicitarTiquete(){
                 cout << "Valor ingresado inválido. Realice el proceso nuevamente."
                 << endl << endl << "Ingrese 0 para continuar ";
             }
-            try{
-                cin>>op;
-            } catch (runtime_error&){
-                op = -1;
-            }
+            op = readNumber("Opción no válida");
             Enter();
             menuSolicitarTiquete();
         }
@@ -668,11 +663,7 @@ void menuSolicitarTiquete(){
     } else {
         cout << "Valor ingresado inválido. Realice el proceso nuevamente."
         << endl << endl << "Ingrese 0 para continuar ";
-        try{
-            cin>>op;
-        } catch (runtime_error&){
-            op = -1;
-        }
+        op = readNumber("Opción no válida");
         Enter();
         menuSolicitarTiquete();
     }
@@ -706,23 +697,47 @@ void runTestAtenderTiquetes(int nTiquetes){
             listaAreas->goToPos(generarNumero(areas));
             area = listaAreas->getElement();
             area->ventanillas->goToPos(generarNumero(area->ventanillas->getSize()));
-            atender(area->ventanillas->getElement());
+            if(atender(area->ventanillas->getElement()) == nullptr)
+                i--;
     }
 }
 //____________________________________Menú______________________________________
 
 int main(){
     SetConsoleOutputCP( 65001 );
-    int op = 0;
+    int op = -1;
     DefaultAreas();
     listaAreas->goToStart();
     Area *a= listaAreas->getElement();
     a->toString();
     cout<<a->getCantidadVentanillas();
     DefaultServicios();
+
+    while(op < 0 || op > 1){
+        Enter();
+        cout << "Iniciar el programa con tiquetes de prueba?" << endl << "(1/0): ";
+        op = readNumber("Opción no válida");
+        if(op == 1){
+            op = -1;
+            while(op < 1 || op > 100){
+                cout << "Ingrese la cantidad de tiquetes que desea crear: ";
+                op = readNumber("Opción no válida");
+                if(op > 1 && op <= 100)
+                    runTestEmitirTiquetes(op);
+            }
+            int tope = op;
+            op = -1;
+            while(op < 1 || op > tope){
+                cout << "Ingrese la cantidad de tiquetes que desea atender: ";
+                op = readNumber("Opción no válida");
+                if(op > 1 && op <= tope)
+                    runTestAtenderTiquetes(op);
+            }
+            op = 1;
+        }
+    }
+    op = -1;
     Enter();
-    runTestEmitirTiquetes(100);
-    runTestAtenderTiquetes(80);
 //    cout << toArray(listaAreas)->getSize() << endl;
 
     while(op!=6){
@@ -735,11 +750,8 @@ int main(){
         "6. Salir"<<endl;
 
 		cout<<"Qué desea realizar? ";
-        try{
-            cin>>op;
-        } catch (runtime_error&){
-            op = -1;
-        }
+        op = readNumber("Opción no válida");
+
 
 		if(op ==1)
 			VerEstadoDeColas();
