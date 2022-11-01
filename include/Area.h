@@ -16,7 +16,7 @@ class Ventana;
 class Tiquete;
 
 class Servicio;
-#include "Servicio.h"
+#include "Servicio.h" // El include aquí para forzar el orden en que se importa
 
 
 class Area{
@@ -38,8 +38,7 @@ public:
         this->codigo = codigo;
         this->contadorT = contadorT;
         this->tiempoT = tiempoT;
-//        List<Servicio*> *servicios = new LinkedList<Servicio*>();
-        //this->clientes = clientes;
+
     }
     Area(int cantVentanillas){
         this->cantVentanillas = cantVentanillas;
@@ -80,12 +79,7 @@ public:
     List<Ventana*>* getVentanillas(){
         return ventanillas;
     }
-   /*void setClientes(LinkedPriorityQueue<string> *lista){
-        clientes = lista;
-    }
-    LinkedPriorityQueue<string>* getClientes(){
-        return clientes;
-    }*/
+
     void setCantidadVentanillas(int c){
         cantVentanillas = c;
     }

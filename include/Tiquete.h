@@ -56,6 +56,6 @@ class Tiquete
         string getCodigo() {return codigo;}
         double getEspera() {return espera;}
 };
-#include "Ventana.h"
+#include "Ventana.h" // El include aquí para forzar el orden en que se importa
 
 #endif // TIQUETE_H
