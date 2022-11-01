@@ -74,15 +74,6 @@ public:
 
         return tiqueteAtendido;
     }
-
-    /*void setlastCliente(){
-        lastCliente = Atender(ListaTiquetes<string> *s);
-    }*/
-
-    /*void getLastCliente(){
-
-    }*/
-
     int getTiquetesAtendidos(){return tiquetesAtendidos;}
 
     void print(){

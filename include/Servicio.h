@@ -7,7 +7,7 @@
 using namespace std;
 class Area;
 
-#include "Tiquete.h"
+#include "Tiquete.h" // El include aquí para forzar el orden en que se importa
 class Servicio
 {
    private:

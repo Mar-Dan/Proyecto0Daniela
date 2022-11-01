@@ -18,7 +18,6 @@
 using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
-//List<Tiquete*> listaTiquetes = new LinkedPriorityQueue<Tiquete*>(2);
 
 int generarNumero(int tope){
     int r = rand() % tope;
@@ -28,9 +27,14 @@ int generarNumero(int tope){
 void Enter(){
     system("CLS");
 }
-//----------------------- VER ESTADOS DE COLAS------------------------------
+//--------------------------- VER ESTADOS DE COLAS -----------------------------
 
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
+    /**
+    Función para crear un tiquete nuevo, asociarlo a la cola de su respectiva
+    área y agregar el tiquete a los parámetros de cada objeto que precisa saber
+    cuántos tiquetes relacionados a sí mismo se han emitido.
+    **/
     int numT;
     string prefijo;
     string codigo;
@@ -40,7 +44,6 @@ Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     numT = area->getContadorT();
     area->setContadorT();
     prefijo = area->getCodigo();
-//    cout << prefijo << endl;
 
     if (numT < 10){
         codigo = prefijo + "0" + to_string(numT);
@@ -66,6 +69,10 @@ Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
 }
 
 List<Tiquete*>* toArray(List<Area*>* listaAreas){
+    /**
+    Función para crear una ArrayList con los tiquetes atendidos de todas las
+    áreas.
+    **/
     int total = 0;
     Area* elemento;
     List<Tiquete*> *L;
@@ -95,6 +102,10 @@ List<Tiquete*>* toArray(List<Area*>* listaAreas){
 }
 
 int getTiqPref(List<Tiquete*>* arrTiquetes){
+    /**
+    Función para obtener la cantidad de tiquetes con prioridad 0 en un ArrayList
+    de punteros a tiquetes. Devuelve el resultado del conteo.
+    **/
     int preferenciales = 0;
     arrTiquetes->goToStart();
     while(!arrTiquetes->atEnd()){
@@ -107,21 +118,25 @@ int getTiqPref(List<Tiquete*>* arrTiquetes){
 }
 
 Tiquete* atender(Ventana* ventana){
-        Tiquete* tiqueteAtendido;
-        if(ventana->getArea()->cola->isEmpty()){
-                return nullptr;
-        } else {
-            tiqueteAtendido = ventana->atender();
-        }
-        tiqueteAtendido->atenderTiquete(ventana);
-        ventana->getArea()->tiquetesAtendidos->append(tiqueteAtendido);
-        ventana->getArea()->tiempoT += tiqueteAtendido->getEspera();
-        ventana->getArea()->addClientes();
+    /**
+    Función para manipular un tiquete y sus objetos asociados, de tal manera que
+    se almacene como un tiquete que ya no puede se atendido.
+    **/
+    Tiquete* tiqueteAtendido;
+    if(ventana->getArea()->cola->isEmpty()){
+            return nullptr;
+    } else {
+        tiqueteAtendido = ventana->atender();
+    }
+    tiqueteAtendido->atenderTiquete(ventana);
+    ventana->getArea()->tiquetesAtendidos->append(tiqueteAtendido);
+    ventana->getArea()->tiempoT += tiqueteAtendido->getEspera();
+    ventana->getArea()->addClientes();
 
-        return tiqueteAtendido;
+    return tiqueteAtendido;
 }
 
-//***********************************ADMINISTRACIÓN******************************************
+//******************************ADMINISTRACIÓN**********************************
 
 Area* getArea(string codeArea){
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -239,6 +254,12 @@ void printListaServicios(){
 }
 
 void printCola(PriorityQueue<Tiquete*>* C){
+    /**
+    Método para mostrar en pantalla las colas de la lista C.
+    Debido a que C es un puntero a una lista de punteros, se saca cada objeto de
+    la cola para mostrar su nombre y se inserta en otra lista, para repetir el
+    proceso al revés, de tal manera que la cola a la que apunta C no quede vacía
+    **/
     PriorityQueue<Tiquete*>* cola = new LinkedPriorityQueue<Tiquete*>(2);
 
     bool enPrioridad = true;
@@ -263,6 +284,9 @@ void printCola(PriorityQueue<Tiquete*>* C){
 }
 
 void VerEstadoDeColas(){
+    /**
+    Método para mostrar en pantalla el estado de las colas de todas las áreas.
+    **/
     string foo;
     cout << "Estado de colas:" << endl;
     for(listaAreas->goToStart(); !listaAreas->atEnd(); listaAreas->next()){
@@ -273,6 +297,10 @@ void VerEstadoDeColas(){
     cout << "Ingrese cualquier número para continuar"; cin >> foo;
 }
 void menuPrintVentanas(){
+    /**
+    Método para mostrar en pantalla el menú para consultar los tiquetes atendidos
+    por ventana a través de su respectiva área.
+    **/
     Enter();
     listaAreas->goToStart();
     Area* local;
@@ -305,6 +333,10 @@ void menuPrintVentanas(){
     return;
 }
 void menuAtender(){
+    /**
+    Método para mostrar en pantalla el menú para atender un tiquete en la
+    ventanilla que le corresponde a quien opere el programa
+    **/
     Area* local;
     int i = 0;
     cout << "Indique el número del Área a la que pertenece" << endl;
@@ -491,6 +523,9 @@ int Administracion(){
     return 0;
 }
 void Estadisticas(){
+    /**
+    Método para mostrar en pantalla el menú de estadísticas
+    **/
     int op = 0;
     int foo;
     while(op!=6){
@@ -549,6 +584,10 @@ void Estadisticas(){
     }
 }
 void menuSolicitarTiquete(){
+    /**
+    Método para mostrar en pantalla el menú para solicitar un tiquete de manera
+    cómoda y separada del menú principal.
+    **/
     int e = listaServicios->getSize();
     int op = 0;
     Tiquete* nTiquete;
@@ -556,11 +595,13 @@ void menuSolicitarTiquete(){
     cout << "Seleccione en cuál servicio desea que le atiendan: "; cin >> op;
     if(op >= 0 && op < e){
         listaServicios->goToPos(op);
-        cout << "¿Desea que le atiendan en " << listaServicios->getElement()->getNombre() << " ?" << endl << "(1/0): "; cin >> op;
+        cout << "¿Desea que le atiendan en " << listaServicios->getElement()->getNombre()
+        << " ?" << endl << "(1/0): "; cin >> op;
         if(op == 1){
             cout << "¿Usted es cliente preferencial?" << endl << "(1/0): "; cin >> op;
             if (op != 0 && op != 1){
-                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente."
+                << endl << endl << "Ingrese 0 para continuar ";
                 cin >> op;
                 menuSolicitarTiquete();
             } else if(op == 1){
@@ -576,7 +617,8 @@ void menuSolicitarTiquete(){
             if (op == 0){
                 cout << "Ingrese 0 para continuar";
             } else {
-                cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+                cout << "Valor ingresado inválido. Realice el proceso nuevamente."
+                << endl << endl << "Ingrese 0 para continuar ";
             }
             cin >> op;
             Enter();
@@ -587,15 +629,20 @@ void menuSolicitarTiquete(){
                     << "Ingrese cualquier número para continuar: "; cin >> op;
         op = 0;
     } else {
-        cout << "Valor ingresado inválido. Realice el proceso nuevamente." << endl << endl << "Ingrese 0 para continuar ";
+        cout << "Valor ingresado inválido. Realice el proceso nuevamente."
+        << endl << endl << "Ingrese 0 para continuar ";
         cin >> op;
         Enter();
         menuSolicitarTiquete();
     }
 }
-//-----------------------------------------Menú-------------------
+//----------------------------Funciones de testeo-------------------------------
 
 void runTestEmitirTiquetes(int nTiquetes){
+    /**
+    Función para simular la emisión de tiquetes de manera aleatoria.
+    El parámetro nTiquetes indica cuántos tiquetes se emitirán
+    **/
     int areas = listaAreas->getSize();
     Area* area;
     for(int i = 0; i < nTiquetes; i++){
@@ -608,6 +655,10 @@ void runTestEmitirTiquetes(int nTiquetes){
 }
 
 void runTestAtenderTiquetes(int nTiquetes){
+    /**
+    Función para simular atender tiquetes de manera aleatoria.
+    El parámetro nTiquetes recibe la cantidad de tiquetes que se atenderán
+    **/
     int areas = listaAreas->getSize();
     Area* area;
     for(int i = 0; i < nTiquetes; i++){
@@ -617,6 +668,7 @@ void runTestAtenderTiquetes(int nTiquetes){
             atender(area->ventanillas->getElement());
     }
 }
+//____________________________________Menú______________________________________
 
 int main(){
     int op = 0;
