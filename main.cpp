@@ -63,7 +63,7 @@ Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     string codigo;
     Tiquete* tiqueteN;
 
-    servicio->addContadorT();
+    servicio->addTiqDados();
     numT = area->getContadorT();
     area->setContadorT();
     prefijo = area->getCodigo();
@@ -327,8 +327,8 @@ void menuPrintVentanas(){
         cout << "Ventanilla: " << local->getVentanillas()->getElement()->getCodigo() << "\tTiquetes atendidos: " << local->getVentanillas()->getElement()->getTiquetesAtendidos() << endl;
         local->getVentanillas()->next();
     }
-    string d;
-    cout << "Ingrese cualquier número para regresar al menú."; cin >> d;
+//    string d;
+//    cout << "Ingrese cualquier número para regresar al menú."; cin >> d;
     return;
 }
 void menuAtender(){
@@ -539,7 +539,7 @@ void Estadisticas(){
                 cout << "Área: " << local->getCodigo() << "\t Tiempo de espera promedio: " << local->getTiempoPromedio() << endl;
                 listaAreas->next();
             }
-            cout << "Ingrese cualquier número para continuar"; cin >> foo;
+            cout << "Ingrese cualquier número para continuar "; cin >> foo;
         }
         else if(op==2){
             listaAreas->goToStart();
@@ -549,26 +549,26 @@ void Estadisticas(){
                 cout << "Área: " << local->getCodigo() << "\t Tiquetes dispensados: " << local->getContadorT() << endl;
                 listaAreas->next();
             }
-            cout << "Ingrese cualquier número para continuar"; cin >> foo;
+            cout << "Ingrese cualquier número para continuar "; cin >> foo;
         }
         else if(op==3){
             menuPrintVentanas();
-            cout << "Ingrese cualquier número para continuar"; cin >> foo;
+            cout << "Ingrese cualquier número para continuar "; cin >> foo;
         }
         else if(op==4){
             listaServicios->goToStart();
             while(!listaServicios->atEnd()){
                 cout << "Servicio: " << listaServicios->getElement()->getNombre() << "\t Tiquetes dispensados: "
-                        << listaServicios->getElement()->getContadorT() << endl;
+                        << listaServicios->getElement()->getTiqDados() << endl;
                 listaServicios->next();
             }
-            cout << "Ingrese cualquier número para continuar"; cin >> foo;
+            cout << "Ingrese cualquier número para continuar "; cin >> foo;
         }
         else if(op==5){
             List<Tiquete*>* tList = toArray(listaAreas);
             cout<<"Estadísticas"<<endl;
             cout << "Total de tiquetes preferenciales dispensados: " << getTiqPref(tList) << endl;
-            cout << "Ingrese cualquier número para continuar"; cin >> foo;
+            cout << "Ingrese cualquier número para continuar "; cin >> foo;
         }
         else if(op>6 || op<=0)
             cout<<"Opcion no válida"<<endl;
@@ -646,6 +646,7 @@ void runTestAtenderTiquetes(int nTiquetes){
 }
 
 int main(){
+    SetConsoleOutputCP( 65001 );
     int op = 0;
     DefaultAreas();
     listaAreas->goToStart();
@@ -653,11 +654,12 @@ int main(){
     a->toString();
     cout<<a->getCantidadVentanillas();
     DefaultServicios();
+    Enter();
     runTestEmitirTiquetes(100);
     runTestAtenderTiquetes(80);
+//    cout << toArray(listaAreas)->getSize() << endl;
 
     while(op!=6){
-        Enter();
         cout<<"Bienvenid@"<<endl;
         cout<<"1. Ver estados de colas"<<endl<<
         "2. Solicitar tiquete"<<endl<<
@@ -683,7 +685,7 @@ int main(){
 			Estadisticas();
 		if(op>6 || op<=0)
 			cout<<"Opción no válida"<<endl;
-
+        Enter();
 	}
 	cout<<"\nGracias por su visita"<<endl;
 	return 0;

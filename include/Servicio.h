@@ -39,6 +39,9 @@ class Servicio
         void addContadorT(){
             contadorT++;
         }
+        void addTiqDados(){
+            tiqDados++;
+        }
 
         friend ostream& operator << (ostream& os, const Servicio& m)
         {

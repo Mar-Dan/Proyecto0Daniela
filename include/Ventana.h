@@ -71,6 +71,7 @@ public:
 
         tiqueteAtendido = area->cola->removeMin();
         lastCliente = tiqueteAtendido->getCodigo();
+        tiquetesAtendidos++;
 
         return tiqueteAtendido;
     }
