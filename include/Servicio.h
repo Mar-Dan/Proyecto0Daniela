@@ -5,8 +5,11 @@
 #include "Area.h"
 using namespace std;
 class Area;
-
-#include "Tiquete.h"
+/*Anthony Camacho y Maria Daniela Chaves:
+Clase servicio: contiene un nombre, un area,
+una cantidad de tiquetes emitidos y tiquetes
+dados.*/
+#include "Tiquete.h" // El include aquí para forzar el orden en que se importa
 class Servicio
 {
    private:

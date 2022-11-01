@@ -1,6 +1,6 @@
 #ifndef DNODE_H
 #define DNODE_H
-
+/*Hecha en clase: Nodo de listas doblemente enlazadas*/
 template <typename E>
 class DNode {
 public:

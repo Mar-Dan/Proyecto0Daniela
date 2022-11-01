@@ -1,6 +1,6 @@
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
-
+/*metodos de las colas de prioridad*/
 template <typename E>
 class PriorityQueue {
 private:

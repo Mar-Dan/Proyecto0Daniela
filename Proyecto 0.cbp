@@ -34,9 +34,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Mains.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="include/Area.h" />
 		<Unit filename="include/ArrayList.h" />
 		<Unit filename="include/DLinkedList.h" />

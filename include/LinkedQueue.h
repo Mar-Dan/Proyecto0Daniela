@@ -9,7 +9,10 @@
 using std::runtime_error;
 using std::cout;
 using std::endl;
-
+/*Hecha en clase: Cola enlazada en la que se le puede insertar
+un elemento, retirar el elemento que este por debajo, consultar
+el elemento, borrar todo el contenido, verificar si está vacío,
+consultar la cantidad de elementos e imprimir*/
 template <typename E>
 class LinkedQueue : public Queue<E> {
 private:

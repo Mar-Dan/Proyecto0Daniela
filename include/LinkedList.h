@@ -5,8 +5,10 @@
 #include "Node.h"
 #include <stdexcept>
 #include <iostream>
-
-
+/*Hecha en clase. Lista enlazada: se le puede insertar objetos,
+borrar, buscar un elemento, cambiar de posición, ver si está llena
+e insertar y borrar elementos
+*/
 using std::runtime_error;
 using std::cout;
 using std::endl;

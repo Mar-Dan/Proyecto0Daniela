@@ -1,6 +1,6 @@
 #ifndef QUEUE_H
 #define QUEUE_H
-
+/*metodos de las colas*/
 template <typename E>
 class Queue {
 private:

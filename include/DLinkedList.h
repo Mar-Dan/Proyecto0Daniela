@@ -10,6 +10,9 @@ using std::runtime_error;
 using std::cout;
 using std::endl;
 
+/*Hecha en clase: Clase de lista doblemente enlazada: se puede crear una lista,
+insertar y borrar elementos, extender su máximo, buscar y conseguir un elemento,
+cambiar de posición, buscar su posición y su tamaño e imprimir sus elemntos.*/
 template <typename E>
 class DLinkedList : public List<E> {
 private:
