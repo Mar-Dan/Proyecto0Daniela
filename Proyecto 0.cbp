@@ -39,25 +39,16 @@
 		</Unit>
 		<Unit filename="include/Area.h" />
 		<Unit filename="include/ArrayList.h" />
-		<Unit filename="include/ArrayStack.h" />
-		<Unit filename="include/Cliente.h" />
 		<Unit filename="include/DLinkedList.h" />
 		<Unit filename="include/DNode.h" />
-		<Unit filename="include/Dictionary.h" />
-		<Unit filename="include/HeapPriorityQueue.h" />
-		<Unit filename="include/KVPair.h" />
 		<Unit filename="include/LinkedList.h" />
 		<Unit filename="include/LinkedPriorityQueue.h" />
 		<Unit filename="include/LinkedQueue.h" />
 		<Unit filename="include/List.h" />
-		<Unit filename="include/ListaTiquetes.h" />
-		<Unit filename="include/ListaVentanillas.h" />
-		<Unit filename="include/MinHeap.h" />
 		<Unit filename="include/Node.h" />
 		<Unit filename="include/PriorityQueue.h" />
 		<Unit filename="include/Queue.h" />
 		<Unit filename="include/Servicio.h" />
-		<Unit filename="include/Stack.h" />
 		<Unit filename="include/Tiquete.h" />
 		<Unit filename="include/Ventana.h" />
 		<Unit filename="main.cpp" />
