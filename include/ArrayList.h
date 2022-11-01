@@ -9,7 +9,9 @@
 using std::runtime_error;
 using std::cout;
 using std::endl;
-
+/*Hecha en clase: lista de arreglos a la cual se le puede
+insertar objetos, borrar, buscar un elemento, cambiar de
+posición, ver si está llena e insertar y borrar elementos*/
 template <typename E>
 class ArrayList : public List<E> {
 protected:

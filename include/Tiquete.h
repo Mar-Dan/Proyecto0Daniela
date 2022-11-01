@@ -8,7 +8,11 @@
 #include "LinkedPriorityQueue.h"
 
 using namespace std;
-
+/*Anthony Camacho y M. Daniela Chaves:
+Clase tiquete: contiene una prioridad, un servicio,
+un codigo, horas de entrada y salida y una ventana.
+Puede ser atendida
+*/
 class Ventana;
 class Servicio;
 

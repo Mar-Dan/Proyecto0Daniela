@@ -9,7 +9,10 @@
 #include "LinkedPriorityQueue.h"
 
 using namespace std;
-
+/*Anthony Camacho y M. Daniela Chaves
+Calse Ventana: contiene un area, un numero, un codigo,
+el último tiquete que atendió y cantidad de tiquetes
+atendidos.*/
 class Area;
 class Tiquete;
 
@@ -35,13 +38,7 @@ private:
     }
 
 public:
-//    Ventana(){
-//        this->area = area;
-//        this->n = n;
-//        this->codigo = codigo;
-//        this->lastCliente = lastCliente;
-//        this->tiquetesAtendidos = tiquetesAtendidos;
-//    }
+
     Ventana(Area* area){
         this->area = area;
         this->codigo = area->getCodigo();

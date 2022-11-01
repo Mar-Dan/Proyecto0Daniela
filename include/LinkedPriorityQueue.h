@@ -5,6 +5,10 @@
 #include <stdexcept>
 #include "PriorityQueue.h"
 #include "LinkedQueue.h"
+/*Hecha en clase: cola de prioridad enlazada: se puede
+insertar elementos con una prioridad, removerlos, buscar
+el elemento de prioridad más alta y primero en la cola y
+el tamaño e imprimir.*/
 
 using std::runtime_error;
 using std::cout;

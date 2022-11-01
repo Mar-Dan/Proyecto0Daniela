@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <windows.h>
+
 #include "LinkedPriorityQueue.h"
 #include "PriorityQueue.h"
 #include "DLinkedList.h"
@@ -15,6 +16,19 @@
 #include "Servicio.h"
 #include "Area.h"
 
+/*Anthony Camacho y Maria Daniela Chaves
+Main del Proyecto 0:
+Incluye métodos para:
+1. Ver los tiquetes esperando en cada cola por area.
+2. Solicitar un tiquete como cliente, al que
+se le asigna un area, un servicio y una prioridad.
+3. Atender los tiquetes en espera y verificar si las
+colas están vacías.
+4. Como administrador configurar los servicios (agregar,
+eliminar y reacomodar) y areas (agregar y eliminar)
+5. Ver estadisticas de tiempo de espera, tiquetes
+dispensados por area y servicio, tiquetes atendidos por
+ventana, total de tiquetes preferenciales*/
 
 using namespace std;
 List<Area*> *listaAreas;
@@ -28,7 +42,6 @@ int generarNumero(int tope){
 void Enter(){
     system("CLS");
 }
-//--------------------------- VER ESTADOS DE COLAS -----------------------------
 
 Tiquete* SolicitarTiquete(Area* area, Servicio* servicio, int prioridad){
     /**
@@ -406,7 +419,7 @@ int Administracion(){
         Enter();
         opS=0;
         opA=0;
-        cout<<"1. Definir �reas"<<endl<<
+        cout<<"1. Definir Áreas"<<endl<<
         "2. Definir servicios disponibles"<<endl<<
         "3. Regresar"<<endl;
         cout<<"�Que desea realizar, administardor? ";cin>>op;

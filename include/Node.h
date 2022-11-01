@@ -2,6 +2,7 @@
 #define NODE_H
 
 template <typename E>
+/*Hechos en clase nodos de la clase lista enlazada*/
 class Node {
 public:
     E element;

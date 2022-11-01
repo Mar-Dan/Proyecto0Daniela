@@ -1,6 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
-
+/*Hecha en clase: métodos de la clase lista*/
 template <typename E>
 class List {
 private:

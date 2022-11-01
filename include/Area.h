@@ -11,6 +11,11 @@
 #include "ArrayList.h"
 
 using namespace std;
+/*Anthony Camacho y Maria Daniela Chaves: Clase que representa
+area: requiere contiene una lista de servicios editable,
+una cantidad de ventanillas y cuenta cuantos tiquetes fueron
+atendidos por si misma y cuantos tiquetes esperan a que le atiendan.*/
+
 
 class Ventana;
 class Tiquete;
