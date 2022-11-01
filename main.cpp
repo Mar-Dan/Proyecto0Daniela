@@ -34,19 +34,6 @@ using namespace std;
 List<Area*> *listaAreas;
 List<Servicio*> *listaServicios;
 
-int readNumber(string error_message) {
-
-    int result;
-
-    while (!(cin >> result)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout << error_message << std::endl;
-    }
-
-    return result;
-}
-
 int generarNumero(int tope){
     int r = rand() % tope;
     return r;
